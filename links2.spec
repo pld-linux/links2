@@ -19,7 +19,7 @@ Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 Version:	2.1pre9
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -41,6 +41,8 @@ Patch9:		%{name}-gzip_fallback.patch
 Patch10:	%{name}-js-Date-getTime.patch
 Patch11:	%{name}-js-submit-nodefer.patch
 Patch12:	%{name}-home_etc.patch
+Patch13:	http://sven.gimp.org/links-directfb.patch
+Patch14:	%{name}-directfb_part2.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -49,6 +51,7 @@ BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	zlib-devel
 %if%{!?_without_graphics:1}%{?_without_graphics:0}
+BuildRequires:	DirectFB-devel >= 0.9.17
 BuildRequires:	libpng-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
@@ -127,6 +130,8 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
 rm -f missing
