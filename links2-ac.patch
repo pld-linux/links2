@@ -1,14 +1,19 @@
---- links-2.1pre16/configure.in.orig	2005-01-28 21:34:43.190597000 +0100
-+++ links-2.1pre16/configure.in	2005-01-28 21:47:18.645751112 +0100
-@@ -5,11 +5,7 @@
+diff -ur links-2.1pre17/configure.in links-2.1pre17.new/configure.in
+--- links-2.1pre17/configure.in	2005-02-24 16:17:57.000000000 +0000
++++ links-2.1pre17.new/configure.in	2005-03-03 18:56:08.093081944 +0000
+@@ -5,15 +5,7 @@
  
  AC_INIT(main.c)
  
 -<<<<<<< configure.in
+-<<<<<<< configure.in
 -AM_INIT_AUTOMAKE(links, 2.1pre15)
 -=======
- AM_INIT_AUTOMAKE(links, 2.1pre16)
+-AM_INIT_AUTOMAKE(links, 2.1pre16)
 ->>>>>>> 1.111
+-=======
+ AM_INIT_AUTOMAKE(links, 2.1pre17)
+->>>>>>> 1.116
  
  ACLOCAL="./missing aclocal"
  AUTOCONF="./missing autoconf"
