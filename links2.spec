@@ -17,14 +17,12 @@ Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 %define	pre	pre15
 Version:	2.1%{pre}
-%define	bver	pre3
-Release:	0.%{bver}.1
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
-#Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-Source0:	http://artax.karlin.mff.cuni.cz/~mikulas/links/download/links-%{version}%{bver}.tar.gz
-# Source0-md5:	a88fd7b2b0ee72eef0c61c28975b91f4
+Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
+# Source0-md5:	d70a0ad41fba921f04d222d3546827de
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
