@@ -49,7 +49,7 @@ BuildRequires:	automake
 %{?with_javascript:BuildRequires:	flex}
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.1
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	zlib-devel
 %if %{with graphics}
 %{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
