@@ -1,9 +1,9 @@
 diff -ru links-0.96/cookies.c links-0.96+cookies-save/cookies.c
 --- links-0.96/cookies.c	Mon Sep  3 07:19:37 2001
 +++ links-0.96+cookies-save/cookies.c	Mon Sep  3 07:18:42 2001
-@@ -276,15 +276,99 @@
+@@ -272,15 +272,99 @@
  
- void init_cookies()
+ void init_cookies(void)
  {
 -	/* !!! FIXME: read cookies */
 +	unsigned char in_buffer[MAX_STR_LEN];
@@ -72,7 +72,7 @@ diff -ru links-0.96/cookies.c links-0.96+cookies-save/cookies.c
 +	fclose(fp);
  }
  
- void cleanup_cookies()
+ void cleanup_cookies(void)
  {
  	struct cookie *c;
 +	unsigned char *cookfile;
