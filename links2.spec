@@ -8,6 +8,9 @@
 # _without_pmshell - compile without PMShell graphics driver
 # _without_atheos - compile without Atheos graphics driver
 
+%ifnarch %{ix86} alpha
+%define _without_svgalib 1
+%endif
 Summary:	Lynx-like WWW browser
 Summary(es):	El links es un browser para modo texto, similar a lynx
 Summary(pl):	Podobna do Lynksa przegl±darka WWW
