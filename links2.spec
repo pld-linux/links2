@@ -39,6 +39,7 @@ Patch10:	%{name}-js-submit-nodefer.patch
 Patch11:	%{name}-segv.patch
 Patch12:	%{name}-pl-update.patch
 Patch13:	%{name}-ac.patch
+Patch14:	%{name}-fb-memcorruption.patch
 #Patch15:	%{name}-home_etc.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
@@ -128,6 +129,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 cd intl
 ./gen-intl
