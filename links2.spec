@@ -1,5 +1,4 @@
 #
-# TODO: -driver fb doesn't work without -mode
 # Conditional build:
 %bcond_without	javascript	# build without JavaScript interpreter
 %bcond_without	graphics	# build without graphics support
@@ -34,15 +33,14 @@ Patch3:		%{name}-img.patch
 Patch4:		%{name}-convert-old-bookmarks.patch
 Patch5:		%{name}-cookies-save.patch
 Patch7:		%{name}-config-dirs.patch
-#Patch8:		%{name}-dump_codepage.patch
 Patch8:		%{name}-gzip_fallback.patch
 Patch9:		%{name}-js-Date-getTime.patch
 Patch10:	%{name}-js-submit-nodefer.patch
 Patch11:	%{name}-segv.patch
-#Patch12:	%{name}-en-fixes.patch
 Patch12:	%{name}-pl-update.patch
 Patch13:	%{name}-ac.patch
-#Patch13:	%{name}-home_etc.patch
+Patch14:	%{name}-fb-memcorruption.patch
+#Patch15:	%{name}-home_etc.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -131,6 +129,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 cd intl
 ./gen-intl
