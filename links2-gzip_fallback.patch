@@ -1,0 +1,105 @@
+--- links-0.97/configure.in	Mon May  6 01:07:42 2002
++++ links-0.97/configure.in.new	Wed Jul  3 10:43:47 2002
+@@ -138,6 +138,9 @@
+ fi
+ AC_MSG_RESULT($cf_result)
+ 
++AC_CHECK_HEADERS(zlib.h)
++AC_CHECK_LIB(z, gzdopen)
++
+ AC_CHECK_LIB(dl, dlopen)
+ #ifdef HAVE_SSL
+ AC_ARG_WITH(ssl, [  --without-ssl           disable SSL support], [if test "$withval" = no; then disable_ssl=yes; fi])
+--- links-0.97/file.c	Wed Jan 30 14:53:48 2002
++++ links-0.97/file.c.new	Wed Jul  3 10:44:03 2002
+@@ -203,9 +203,14 @@
+ 	if (!(name = get_filename(c->url))) {
+ 		setcstate(c, S_OUT_OF_MEM); abort_connection(c); return;
+ 	}
++opening:	
+ 	if ((h = open(name, O_RDONLY | O_NOCTTY)) == -1) {
+ 		int er = errno;
+ 		if ((d = opendir(name))) goto dir;
++		if (strncmp(name + strlen(name) - 3, ".gz", 3) != 0) {
++			add_to_strn(&name, ".gz");
++			goto opening;
++		} 
+ 		mem_free(name);
+ 		setcstate(c, -er); abort_connection(c); return;
+ 	}
+@@ -339,21 +344,51 @@
+ 		close(h);
+ 		setcstate(c, S_FILE_TYPE); abort_connection(c); return;
+ 	} else {
+-		mem_free(name);
++#ifdef HAVE_ZLIB_H
++		if (strncmp(name + strlen(name) - 3, ".gz", 3) == 0) {
++		/* decompression */
++			gzFile gh = gzdopen(h, "r");
++			fl = 0;
++			mem_free(name);
++			if (!gh) {
++				close(h);
++				setcstate(c, S_OUT_OF_MEM); abort_connection(c); return;
++			}
++			if (!(file = mem_alloc(stt.st_size + 1))) {
++				gzclose(gh);
++				setcstate(c, S_OUT_OF_MEM); abort_connection(c); return;
++			}
++			while ((r = gzread(gh, file+fl, stt.st_size)) > 0) {
++				fl += r;
++				file = mem_realloc(file, fl + stt.st_size);
++				if (!file) {
++					gzclose(gh);
++					setcstate(c, S_OUT_OF_MEM);
++					abort_connection(c);
++					return;
++				}
++			}	
++			gzclose(gh);
++			head = stracpy("");
++		}
++		else 
++#endif
++		{
+ 		/* + 1 is there because of bug in Linux. Read returns -EACCES when
+ 		   reading 0 bytes to invalid address */
+-		if (!(file = mem_alloc(stt.st_size + 1))) {
++		    if (!(file = mem_alloc(stt.st_size + 1))) {
++				close(h);
++				setcstate(c, S_OUT_OF_MEM); abort_connection(c); return;
++			}
++			if ((r = read(h, file, stt.st_size)) != stt.st_size) {
++				mem_free(file); close(h);
++				setcstate(c, r == -1 ? -errno : S_FILE_ERROR);
++				abort_connection(c); return;
++			}
+ 			close(h);
+-			setcstate(c, S_OUT_OF_MEM); abort_connection(c); return;
+-		}
+-		if ((r = read(h, file, stt.st_size)) != stt.st_size) {
+-			mem_free(file); close(h);
+-			setcstate(c, r == -1 ? -errno : S_FILE_ERROR);
+-			abort_connection(c); return;
++			fl = stt.st_size;
++			head = stracpy("");
+ 		}
+-		close(h);
+-		fl = stt.st_size;
+-		head = stracpy("");
+ 	}
+ 	if (get_cache_entry(c->url, &e)) {
+ 		mem_free(file);
+--- links-0.97/links.h	Wed Jul  3 10:36:17 2002
++++ links-0.97/links.h.new	Wed Jul  3 10:44:18 2002
+@@ -97,6 +97,10 @@
+ #include <openssl/ssl.h>
+ #endif
+ 
++#ifdef HAVE_ZLIB_H
++#include <zlib.h>
++#endif
++
+ #include "os_depx.h"
+ 
+ #include "setup.h"
