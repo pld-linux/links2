@@ -1,18 +1,16 @@
 #
 # Conditional build:
-# _without_javascript	- don't use javascript interpreter
-# _without_graphics	- don't use graphics
-# _without_svga		- compile without svgalib graphics driver
-# _without_x		- compile without X Window System graphics driver
-# _without_fb		- compile without Linux Framebuffer graphics driver
-# _without_pmshell	- compile without PMShell graphics driver
-# _without_atheos	- compile without Atheos graphics driver
+%bcond_without	javascript	# build without JavaScript interpreter
+%bcond_without	graphics	# build without graphics support
+%bcond_without	svga		# build without svgalib graphics driver
+%bcond_without	x		# build without X Window System graphics driver
+%bcond_without	fb		# build without Linux Framebuffer graphics driver
+%bcond_without	pmshell		# compile without PMShell graphics driver
+%bcond_without	atheos		# compile without Atheos graphics driver
 #
 %ifnarch %{ix86} alpha
-%define _without_svga 1
+%undefine	with_svga
 %endif
-%define		pre	pre13
-
 Summary:	Lynx-like WWW browser
 Summary(es):	El links es un browser para modo texto, similar a lynx
 Summary(pl):	Podobna do Lynksa przegl±darka WWW
@@ -20,13 +18,14 @@ Summary(pt_BR):	O links é um browser para modo texto, similar ao lynx
 Summary(ru):	ôÅËÓÔÏ×ÙÊ WWW ÂÒÏÕÚÅÒ ÔÉÐÁ Lynx
 Summary(uk):	ôÅËÓÔÏ×ÉÊ WWW ÂÒÏÕÚÅÒ ÔÉÐÕ Lynx
 Name:		links2
+%define	pre	pre14
 Version:	2.1%{pre}
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-# Source0-md5:	d563e7352c19f8840ef288e6075070e6
+# Source0-md5:	9a8dd024e3352c8b05f9958e4556cdd8
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
@@ -46,19 +45,19 @@ Patch11:	%{name}-js-submit-nodefer.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_javascript:BuildRequires:	bison}
+%{?with_javascript:BuildRequires:	flex}
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	zlib-devel
-%if %{!?_without_graphics:1}%{?_without_graphics:0}
-%{!?_without_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
-BuildRequires:	libpng-devel
+%if %{with graphics}
+%{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
+%{?with_x:BuildRequires:	XFree86-devel}
 BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
-%{!?_without_javascript:BuildRequires:	flex}
-%{!?_without_javascript:BuildRequires:	bison}
-%{!?_without_svga:BuildRequires:	svgalib-devel}
-%{!?_without_x:BuildRequires:	XFree86-devel}
+%{?with_svga:BuildRequires:	svgalib-devel}
 %endif
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -72,8 +71,8 @@ different:
 - uses drop-down menu (like in Midnight Commander),
 - can download files in background.
 
-%{!?_without_graphics:This version can work in graphical mode.}
-%{!?_without_javascript:This version has support for JavaScript.}
+%{?with_graphics:This version can work in graphical mode.}
+%{?with_javascript:This version has support for JavaScript.}
 
 %description -l es
 Links es un browser WWW modo texto, similar al Lynx. El links muestra
@@ -89,8 +88,8 @@ ale mimo wszystko inn±:
 - u¿ywa opuszczanego menu (jak w Midnight Commanderze),
 - mo¿e ¶ci±gaæ pliki w tle.
 
-%{!?_without_graphics:Ta wersja mo¿e pracowaæ w trybie graficznym.}
-%{!?_without_javascript:Ta wersja obs³uguje JavaScript.}
+%{?with_graphics:Ta wersja mo¿e pracowaæ w trybie graficznym.}
+%{?with_javascript:Ta wersja obs³uguje JavaScript.}
 
 %description -l pt_BR
 Links é um browser WWW modo texto, similar ao Lynx. O Links exibe
@@ -117,7 +116,7 @@ Links - ÃÅ ÔÅËÓÔÏ×ÉÊ WWW ÂÒÏÕÚÅÒ, ÎÁ ÐÅÒÛÉÊ ÐÏÇÌÑÄ ÓÈÏÖÉÊ ÎÁ Lynx, ÁÌÅ
 
 %prep
 %setup -q -n links-%{version}
-%{!?_without_graphics:%patch0 -p1}
+%{?with_graphics:%patch0 -p1}
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -131,20 +130,19 @@ Links - ÃÅ ÔÅËÓÔÏ×ÉÊ WWW ÂÒÏÕÚÅÒ, ÎÁ ÐÅÒÛÉÊ ÐÏÇÌÑÄ ÓÈÏÖÉÊ ÎÁ Lynx, ÁÌÅ
 #%patch12 -p1
 
 %build
-rm -f missing
 %{__aclocal}
 %{__automake}
 %{__autoheader}
 %{__autoconf}
 %configure \
 	--program-suffix=2 \
-	%{!?_without_graphics:--enable-graphics} \
-	%{!?_without_javascript:--enable-javascript} \
-	%{?_without_svga:--without-svgalib} \
-	%{?_without_x:--without-x} \
-	%{?_without_fb:--without-fb} \
-	%{?_without_pmshell:--without-pmshell} \
-	%{?_without_atheos:--without-atheos}
+	%{?with_graphics:--enable-graphics} \
+	%{?with_javascript:--enable-javascript} \
+	%{!?with_svga:--without-svgalib} \
+	%{!?with_x:--without-x} \
+	%{!?with_fb:--without-fb} \
+	%{!?with_pmshell:--without-pmshell} \
+	%{!?with_atheos:--without-atheos}
 %{__make}
 
 %install
@@ -152,9 +150,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/WWW,%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT%{_mandir}/pl/man1
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-%if%{!?_without_graphics:1}%{?_without_graphics:0}
+%if %{with graphics}
 ln -sf links2 $RPM_BUILD_ROOT%{_bindir}/glinks
 echo ".so links2.1" > $RPM_BUILD_ROOT%{_mandir}/man1/glinks.1
 echo ".so links2.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/glinks.1
