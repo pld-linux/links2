@@ -128,7 +128,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
+#%patch12 -p1
 %patch13 -p1
 
 %build
