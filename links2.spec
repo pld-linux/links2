@@ -1,13 +1,13 @@
 #
 # Conditional build:
-# _without_javascript - don't use javascript interpreter
-# _without_graphics - don't use graphics
-# _without_svgalib - compile without svgalib graphics driver
-# _without_x - compile without X Window System graphics driver
-# _without_fb - compile without Linux Framebuffer graphics driver
-# _without_pmshell - compile without PMShell graphics driver
-# _without_atheos - compile without Atheos graphics driver
-
+# _without_javascript	- don't use javascript interpreter
+# _without_graphics	- don't use graphics
+# _without_svgalib	- compile without svgalib graphics driver
+# _without_x		- compile without X Window System graphics driver
+# _without_fb		- compile without Linux Framebuffer graphics driver
+# _without_pmshell	- compile without PMShell graphics driver
+# _without_atheos	- compile without Atheos graphics driver
+#
 %ifnarch %{ix86} alpha
 %define _without_svgalib 1
 %endif
@@ -25,8 +25,8 @@ Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
+# Source0-md5:	8544fbf8e18ce1ecd3f7337365fdfc8b
 Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-# Source0-md5:	d602768af82c3262051cca8f9aa76176
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
