@@ -1,0 +1,115 @@
+fb_driver_param cannot use pointer passed from driver_param list, because
+driver_param elements are freed independently.
+
+--- links-2.1pre16/framebuffer.c.orig	2005-01-22 21:51:53.000000000 +0100
++++ links-2.1pre16/framebuffer.c	2005-02-05 01:34:28.821074080 +0100
+@@ -1072,13 +1072,17 @@
+ 	kbd_set_raw = 1;
+ 	fb_old_vd = NULL;
+ 	ignore=ignore;
+-	fb_driver_param=param;
++	fb_driver_param=NULL;
++	if(param != NULL)
++		fb_driver_param=stracpy(param);
+ 
+ 	border_left = border_right = border_top = border_bottom = 0;
+ 	if (!param) param="";
+ 	if (*param) {
+ 		if (*param < '0' || *param > '9')
+-			bad_p: return stracpy("-mode syntax is left_border[,top_border[,right_border[,bottom_border]]]\n");
++			bad_p: 
++				if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
++				return stracpy("-mode syntax is left_border[,top_border[,right_border[,bottom_border]]]\n");
+ 		border_left = strtoul(param, (char **)&param, 10);
+ 		if (*param == ',') param++;
+ 	} else {
+@@ -1107,16 +1111,23 @@
+ 	}
+ 	if (*param) goto bad_p;
+ 
+-	if (fstat(TTY, &st)) return stracpy("Cannon stat stdin.\n");
++	if (fstat(TTY, &st)) {
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
++		return stracpy("Cannon stat stdin.\n");
++	}
+ 
+ 	fb_console = st.st_rdev & 0xff;
+ 
+ 	ioctl(TTY, VT_WAITACTIVE, fb_console);
+-	if ((e = fb_switch_init())) return e;
++	if ((e = fb_switch_init())) {
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
++		return e;
++	}
+ 
+ 	fb_handler=open("/dev/fb0",O_RDWR);
+ 	if (fb_handler==-1) {
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Cannot open /dev/fb0.\n");
+ 	}
+ 
+@@ -1124,6 +1135,7 @@
+ 	{
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Cannot get FB VSCREENINFO.\n");
+ 	}
+ 
+@@ -1133,6 +1145,7 @@
+ 	{
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Cannot get FB FSCREENINFO.\n");
+ 	}
+ 
+@@ -1180,6 +1193,7 @@
+ 		default:
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Unknown bit depth");
+ 	}
+ 	fb_colors=1<<fb_bits_pp;
+@@ -1224,6 +1238,7 @@
+ 		fb_shutdown_palette();
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Allocation of virtual devices failed.\n");
+ 	}
+ 	fb_kbd = handle_svgalib_keyboard((void (*)(void *, unsigned char *, int))fb_key_in);
+@@ -1236,6 +1251,7 @@
+ 		shutdown_virtual_devices();
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Nonlinear mapping of graphics memory not supported.\n");
+ 	}
+ 		
+@@ -1248,6 +1264,7 @@
+ 
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Cannot mmap graphics memory.\n");
+ 	}
+ 	fb_vmem = fb_mem + border_left * fb_pixelsize + border_top * fb_linesize;
+@@ -1281,6 +1298,7 @@
+ 
+ 		close(fb_handler);
+ 		fb_switch_shutdown();
++		if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
+ 		return stracpy("Cannot open GPM mouse.\n");
+ 	}
+ 	/* hide cursor */
+@@ -1310,6 +1328,7 @@
+ 	shutdown_virtual_devices();
+ 	fb_switch_shutdown();
+ 	svgalib_free_trm(fb_kbd);
++	if(fb_driver_param) mem_free(fb_driver_param);
+ 	/* show cursor */
+ 	printf("\033[?25h");
+ 	fflush(stdout);
