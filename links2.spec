@@ -126,7 +126,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__automake}
 %{__autoconf}
 %configure \
