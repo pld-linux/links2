@@ -16,7 +16,7 @@ Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 Version:	2.1pre2
-Release:	1
+Release:	1.1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -34,6 +34,8 @@ Patch5:		%{name}-convert-old-bookmarks.patch
 Patch6:		%{name}-cookies-save.patch
 Patch7:		%{name}-cookie-parsing.patch
 Patch8:		%{name}-config-dirs.patch
+Patch9:		%{name}-dump_codepage.patch
+Patch10:	%{name}-gzip_fallback.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -116,6 +118,8 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
+%patch10 -p1
 
 %build
 rm -f missing
