@@ -37,14 +37,12 @@ Patch2:		%{name}-reallyquit.patch
 Patch3:		%{name}-img.patch
 Patch4:		%{name}-convert-old-bookmarks.patch
 Patch5:		%{name}-cookies-save.patch
-#Patch6:		%{name}-cookie-parsing.patch
 Patch7:		%{name}-config-dirs.patch
 Patch8:		%{name}-dump_codepage.patch
 Patch9:		%{name}-gzip_fallback.patch
 Patch10:	%{name}-js-Date-getTime.patch
-#Patch11:	%{name}-js-submit-nodefer.patch
+Patch11:	%{name}-js-submit-nodefer.patch
 #Patch12:	%{name}-home_etc.patch
-Patch13:	http://sven.gimp.org/links-directfb.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -125,14 +123,12 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-#%patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-#%patch11 -p1
+%patch11 -p1
 #%patch12 -p1
-#%patch13 -p1
 
 %build
 rm -f missing
