@@ -18,14 +18,16 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-%define	pre	pre14
+%define	pre	pre15
 Version:	2.1%{pre}
-Release:	1
+%define	bver	pre2
+Release:	0.%{bver}.1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
-Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-# Source0-md5:	9a8dd024e3352c8b05f9958e4556cdd8
+#Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
+Source0:	http://artax.karlin.mff.cuni.cz/~mikulas/links/download/links-%{version}%{bver}.tar.gz
+# Source0-md5:	b1736bc0273b3297272a1559526a18f1
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
@@ -41,7 +43,8 @@ Patch8:		%{name}-dump_codepage.patch
 Patch9:		%{name}-gzip_fallback.patch
 Patch10:	%{name}-js-Date-getTime.patch
 Patch11:	%{name}-js-submit-nodefer.patch
-#Patch12:	%{name}-home_etc.patch
+Patch12:	%{name}-segv.patch
+#Patch13:	%{name}-home_etc.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -127,7 +130,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-#%patch12 -p1
+%patch12 -p1
 
 %build
 %{__aclocal}
