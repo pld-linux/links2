@@ -1,10 +1,9 @@
-diff -urN aaa/links-current/main.c links-current/main.c
---- aaa/links-current/main.c	Thu May 16 08:07:43 2002
-+++ links-current/main.c	Sun May 19 19:04:06 2002
-@@ -273,6 +273,7 @@
+--- links-2.1pre16/main.c.orig	2005-01-22 21:51:55.000000000 +0100
++++ links-2.1pre16/main.c	2005-01-28 20:17:55.145127144 +0100
+@@ -274,6 +274,7 @@
+ 		retval = RET_SYNTAX;
  		goto ttt;
  	}
- 	if (!(u = parse_options(g_argc - 1, g_argv + 1))) goto ttt;
 +	if (strncmp (basename(path_to_exe), "glinks", 6) == 0) ggr = 1;
  	if (ggr_drv[0] || ggr_mode[0]) ggr = 1;
  	if (dmp) ggr = 0;

@@ -1,14 +1,14 @@
-diff -urN aaa/links-current/configure.in links-current/configure.in
---- aaa/links-current/configure.in	Thu May 16 08:06:43 2002
-+++ links-current/configure.in	Thu May 23 00:00:43 2002
-@@ -7,10 +7,6 @@
+--- links-2.1pre16/configure.in.orig	2005-01-28 21:34:43.190597000 +0100
++++ links-2.1pre16/configure.in	2005-01-28 21:47:18.645751112 +0100
+@@ -5,11 +5,7 @@
  
- AM_INIT_AUTOMAKE(links, 2.0pre6)
+ AC_INIT(main.c)
  
--ACLOCAL="$missing_dir/missing aclocal"
--AUTOCONF="$missing_dir/missing autoconf"
--AUTOMAKE="$missing_dir/missing automake"
--AUTOHEADER="$missing_dir/missing autoheader"
- image_formats="GIF PNG XBM"
+-<<<<<<< configure.in
+-AM_INIT_AUTOMAKE(links, 2.1pre15)
+-=======
+ AM_INIT_AUTOMAKE(links, 2.1pre16)
+->>>>>>> 1.111
  
- AM_CONFIG_HEADER(config.h)
+ ACLOCAL="./missing aclocal"
+ AUTOCONF="./missing autoconf"
