@@ -42,7 +42,6 @@ Patch10:	%{name}-js-Date-getTime.patch
 Patch11:	%{name}-js-submit-nodefer.patch
 Patch12:	%{name}-home_etc.patch
 Patch13:	http://sven.gimp.org/links-directfb.patch
-Patch14:	%{name}-directfb_part2.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -131,12 +130,12 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
-%patch14 -p1
 
 %build
 rm -f missing
 %{__aclocal}
 %{__automake}
+%{__autoheader}
 %{__autoconf}
 %configure \
 	--program-suffix=2 \
