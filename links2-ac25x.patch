@@ -29,6 +29,14 @@ diff -urN aaa/links-current/config.h.in links-current/config.h.in
 diff -urN aaa/links-current/configure.in links-current/configure.in
 --- aaa/links-current/configure.in	Thu May 16 08:06:43 2002
 +++ links-current/configure.in	Thu May 23 20:57:36 2002
+@@ -16,6 +16,7 @@
+ #AC_PROG_AWK
+ #AM_PROG_LEX
+ #AC_PROG_YACC
++AC_PROG_CXX
+ 
+ dnl Check for libraries
+ #AC_CHECK_LIB(fl,main,AC_DEFINE(JS) LIBS="$LIBS -lfl",AC_MSG_WARN(You don't have libfl; you won't be able to run javascript))
 @@ -83,35 +83,8 @@
  AC_CHECK_SIZEOF(unsigned, "$default_int")
  AC_CHECK_SIZEOF(long, "$default_int")
@@ -66,6 +74,14 @@ diff -urN aaa/links-current/configure.in links-current/configure.in
  
  dnl Checks for library functions.
  AC_PROG_GCC_TRADITIONAL
+@@ -401,7 +402,6 @@
+ 		AC_CHECK_LIB(stdc++, main)
+ 		AC_CHECK_LIB(atheos, main)
+ 		if test "$ac_cv_lib_atheos_main" = yes; then
+-			AC_PROG_CXX
+ 			AC_DEFINE(GRDRV_ATHEOS)
+ 			drivers="$drivers ATHEOS"
+ 			cf_have_atheos=yes
 diff -urN aaa/links-current/dither.c links-current/dither.c
 --- aaa/links-current/dither.c	Fri May 10 22:16:09 2002
 +++ links-current/dither.c	Thu May 23 20:59:42 2002
