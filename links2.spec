@@ -2,11 +2,10 @@
 # Conditional build:
 %bcond_without	javascript	# build without JavaScript interpreter
 %bcond_without	graphics	# build without graphics support
+%bcond_without	fb		# build without Linux Framebuffer graphics driver
+%bcond_without	sdl		# build without SDL graphics driver
 %bcond_without	svga		# build without svgalib graphics driver
 %bcond_without	x		# build without X Window System graphics driver
-%bcond_without	fb		# build without Linux Framebuffer graphics driver
-%bcond_without	pmshell		# compile without PMShell graphics driver
-%bcond_without	atheos		# compile without Atheos graphics driver
 #
 Summary:	Lynx-like WWW browser
 Summary(es):	El links es un browser para modo texto, similar a lynx
@@ -15,14 +14,14 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-%define	pre	pre15
+%define	pre	pre16
 Version:	2.1%{pre}
-Release:	3
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-# Source0-md5:	d70a0ad41fba921f04d222d3546827de
+# Source0-md5:	690b4e9563d7092a2aa6d49f64e2c71e
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
@@ -34,14 +33,15 @@ Patch3:		%{name}-img.patch
 Patch4:		%{name}-convert-old-bookmarks.patch
 Patch5:		%{name}-cookies-save.patch
 Patch7:		%{name}-config-dirs.patch
-Patch8:		%{name}-dump_codepage.patch
-Patch9:		%{name}-gzip_fallback.patch
-Patch10:	%{name}-js-Date-getTime.patch
-Patch11:	%{name}-js-submit-nodefer.patch
-Patch12:	%{name}-segv.patch
-Patch13:	%{name}-en-fixes.patch
-Patch14:	%{name}-pl-update.patch
-#Patch15:	%{name}-home_etc.patch
+#Patch8:		%{name}-dump_codepage.patch
+Patch8:		%{name}-gzip_fallback.patch
+Patch9:		%{name}-js-Date-getTime.patch
+Patch10:	%{name}-js-submit-nodefer.patch
+Patch11:	%{name}-segv.patch
+#Patch12:	%{name}-en-fixes.patch
+Patch12:	%{name}-pl-update.patch
+Patch13:	%{name}-ac.patch
+#Patch13:	%{name}-home_etc.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -53,6 +53,7 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	zlib-devel
 %if %{with graphics}
 %{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
+%{?with_sdl:BuildRequires:	SDL-devel >= 1.2.0}
 %{?with_x:BuildRequires:	XFree86-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -129,25 +130,23 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
-%patch14 -p1
 
 cd intl
 ./gen-intl
 
 %build
 %{__aclocal}
-%{__automake}
-%{__autoheader}
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--program-suffix=2 \
 	%{?with_graphics:--enable-graphics} \
 	%{?with_javascript:--enable-javascript} \
-	%{!?with_svga:--without-svgalib} \
-	%{!?with_x:--without-x} \
 	%{!?with_fb:--without-fb} \
-	%{!?with_pmshell:--without-pmshell} \
-	%{!?with_atheos:--without-atheos}
+	%{!?with_sdl:--without-sdl} \
+	%{!?with_svga:--without-svgalib} \
+	%{!?with_x:--without-x}
 %{__make}
 
 %install
