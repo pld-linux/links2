@@ -147,7 +147,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/WWW,%{_pixmapsdir}} \
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT%{_mandir}/pl/man1
 
 %{__make} install \
@@ -157,10 +157,10 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/WWW,%{_pixmapsdir}} \
 ln -sf links2 $RPM_BUILD_ROOT%{_bindir}/glinks
 echo ".so links2.1" > $RPM_BUILD_ROOT%{_mandir}/man1/glinks.1
 echo ".so links2.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/glinks.1
-install %{SOURCE4} $RPM_BUILD_ROOT%{_applnkdir}/Network/WWW
+install %{SOURCE4} $RPM_BUILD_ROOT%{_desktopdir}
 %endif
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/WWW
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_mandir}/pl/man1/links2.1
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
@@ -171,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README SITES TODO
 %attr(755,root,root) %{_bindir}/*
-%{_applnkdir}/Network/WWW/*
+%{_desktopdir}/*
+%{_pixmapsdir}/*
 %{_mandir}/man*/*
 %lang(pl) %{_mandir}/pl/man*/*
-%{_pixmapsdir}/*
