@@ -1,31 +1,3 @@
-diff -urN aaa/links-current/acconfig.h links-current/acconfig.h
---- aaa/links-current/acconfig.h	Fri May 10 22:16:07 2002
-+++ links-current/acconfig.h	Thu May 23 20:58:50 2002
-@@ -95,8 +95,8 @@
- #undef HAVE_JPEG
- 
- /* */
--#undef AC_BIG_ENDIAN
-+#undef HAVE_BIG_ENDIAN
- 
- /* */
--#undef AC_LITTLE_ENDIAN
-+#undef HAVE_LITTLE_ENDIAN
- 
-diff -urN aaa/links-current/config.h.in links-current/config.h.in
---- aaa/links-current/config.h.in	Thu May 16 16:20:23 2002
-+++ links-current/config.h.in	Thu May 23 20:59:05 2002
-@@ -418,8 +418,8 @@
- #undef HAVE_JPEG
- 
- /* */
--#undef AC_BIG_ENDIAN
-+#undef HAVE_BIG_ENDIAN
- 
- /* */
--#undef AC_LITTLE_ENDIAN
-+#undef HAVE_LITTLE_ENDIAN
- 
 diff -urN aaa/links-current/configure.in links-current/configure.in
 --- aaa/links-current/configure.in	Thu May 16 08:06:43 2002
 +++ links-current/configure.in	Thu May 23 20:57:36 2002
@@ -65,12 +37,12 @@ diff -urN aaa/links-current/configure.in links-current/configure.in
 -)
  
 -if test "$ac_cv_big_endian" = yes; then
--	AC_DEFINE(AC_BIG_ENDIAN)
+-	AC_DEFINE(C_BIG_ENDIAN)
 -else if test "$ac_cv_little_endian" = yes; then
--	AC_DEFINE(AC_LITTLE_ENDIAN)
+-	AC_DEFINE(C_LITTLE_ENDIAN)
 -fi
 -fi
-+AC_C_BIGENDIAN([AC_DEFINE(HAVE_BIG_ENDIAN)], [AC_DEFINE(HAVE_LITTLE_ENDIAN)])
++AC_C_BIGENDIAN([AC_DEFINE(C_BIG_ENDIAN)], [AC_DEFINE(C_LITTLE_ENDIAN)])
  
  dnl Checks for library functions.
  AC_PROG_GCC_TRADITIONAL
@@ -82,42 +54,3 @@ diff -urN aaa/links-current/configure.in links-current/configure.in
  			AC_DEFINE(GRDRV_ATHEOS)
  			drivers="$drivers ATHEOS"
  			cf_have_atheos=yes
-diff -urN aaa/links-current/dither.c links-current/dither.c
---- aaa/links-current/dither.c	Fri May 10 22:16:09 2002
-+++ links-current/dither.c	Thu May 23 20:59:42 2002
-@@ -464,7 +464,7 @@
- 	g=(g*31+127)/255;
- 	b=(b*31+127)/255;
- 	i=(r<<10)|(g<<5)|b;
--#ifdef AC_LITTLE_ENDIAN
-+#ifdef HAVE_LITTLE_ENDIAN
- #ifdef t2c
- 	((t2c *)&ret)[0]=i;
- #else
-@@ -474,7 +474,7 @@
- #else
- 	((unsigned char *)&ret)[0]=i;
- 	((unsigned char *)&ret)[1]=i>>8;
--#endif /* #ifdef AC_LITTLE_ENDIAN */
-+#endif /* #ifdef HAVE_LITTLE_ENDIAN */
- 			
- 
- 	return ret;
-@@ -496,7 +496,7 @@
- 	g=(g*63+127)/255;
- 	b=(b*31+127)/255;
- 	i=(r<<11)|(g<<5)|b;
--#ifdef AC_LITTLE_ENDIAN
-+#ifdef HAVE_LITTLE_ENDIAN
- #ifdef t2c
- 	((t2c *)&ret)[0]=i;
- #else
-@@ -506,7 +506,7 @@
- #else
- 	((unsigned char *)&ret)[0]=i;
- 	((unsigned char *)&ret)[1]=i>>8;
--#endif /* #ifdef AC_LITTLE_ENDIAN */
-+#endif /* #ifdef HAVE_LITTLE_ENDIAN */
- 
- 	return ret;
- 
