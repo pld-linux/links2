@@ -1,0 +1,11 @@
+diff -urN aaa/links-current/main.c links-current/main.c
+--- aaa/links-current/main.c	Thu May 16 08:07:43 2002
++++ links-current/main.c	Sun May 19 19:04:06 2002
+@@ -273,6 +273,7 @@
+ 		goto ttt;
+ 	}
+ 	if (!(u = parse_options(g_argc - 1, g_argv + 1))) goto ttt;
++	if (strncmp (basename(path_to_exe), "glinks", 6) == 0) ggr = 1;
+ 	if (ggr_drv[0] || ggr_mode[0]) ggr = 1;
+ 	if (dmp) ggr = 0;
+ 	if (!ggr && !no_connect && (uh = bind_to_af_unix()) != -1) {

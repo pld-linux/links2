@@ -1,0 +1,11 @@
+--- links-current/view.c.orig	Fri May 10 22:16:20 2002
++++ links-current/view.c	Sun May 26 12:16:53 2002
+@@ -2492,7 +2492,7 @@
+ 			goto x;
+ 		}
+ 		if ((upcase(ev->x) == 'Q' && !ev->y) || ev->x == KBD_CTRL_C) {
+-			exit_prog(ses->term, (void *)(ev->x == KBD_CTRL_C), ses);
++			exit_prog(ses->term, (void *)(ev->x == KBD_CTRL_C || ev->x == 'Q'), ses);
+ 			goto x;
+ 		}
+ 		if (ev->x == KBD_CLOSE){

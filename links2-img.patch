@@ -1,0 +1,59 @@
+diff -urN aaa/links-2.0pre6/html.c links-2.0pre6/html.c
+--- aaa/links-2.0pre6/html.c	Mon May 20 00:32:57 2002
++++ links-2.0pre6/html.c	Sun Jun 16 12:02:57 2002
+@@ -838,7 +838,54 @@
+ 			if (!d_opt->images && !format.link) goto ret;
+ 			if (usemap) al = stracpy("[USEMAP]");
+ 			else if (ismap) al = stracpy("[ISMAP]");
+-			else al = stracpy("[IMG]");
++			else{
++				unsigned char *str = get_attr_val(a, "src");
++				unsigned char *s;
++				int r, i;
++				/* How images will be displayed:
++				* fake_alt = 0   -- do not truncate long names,
++				* fake_alt = 30  -- truncate long names to 30% of term width,
++				* fake_alt = 100 -- truncate long names to 100% of term width.
++				*/         
++				int fake_alt = 20;
++				int max_len;
++				int name_len;
++				/* substitute string for hidden characters */
++				unsigned char *fake_str = stracpy("*");
++				if(str && fake_alt){
++					/* FIXME: replace following '80' with screen width */
++					max_len = (int)80*((float)fake_alt/100);
++					r = strcspn(str, "?");
++					if (!(s = mem_alloc((r + 1) * sizeof(char)))) return;
++					strncpy(s, str, r);
++					s[r] = '\0';
++					for(r = strlen(s) - 1; r >= 0; --r)
++						if(dir_sep(s[r])) break;
++					r++;
++					if(strlen(s + r) > max_len){
++						for(i = strlen(s) -1; i>=0; --i)
++							if(s[i] == '.') break;
++						if(max_len < strlen(s + i)) al = stracpy("[IMG]");
++						else{
++							if(!(al = mem_alloc((max_len + strlen(fake_str) + 3) * sizeof(char)))) return;
++							name_len = max_len - strlen(s + i);
++							strcpy(al, "[\0");
++							strncat(al, s + r, name_len/2);
++							strcat(al, fake_str);
++							strcat(al, s + r + (strlen(s + r) - max_len + name_len/2));
++							strcat(al, "]");
++						}
++					}
++					else{
++						if(!(al = mem_alloc((strlen(s + r) + 3) * sizeof(char)))) return;
++						sprintf(al, "[%s]", s + r);
++					}
++					mem_free(s);
++					mem_free(str);
++					mem_free(fake_str);
++				}
++				else al = stracpy("[IMG]");
++			}
+ 		}
+ 		if (al) {
+ 			if (ismap) {
