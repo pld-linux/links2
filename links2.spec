@@ -11,7 +11,7 @@
 %ifnarch %{ix86} alpha
 %define _without_svga 1
 %endif
-%define		pre	pre11
+%define		pre	pre12
 
 Summary:	Lynx-like WWW browser
 Summary(es):	El links es un browser para modo texto, similar a lynx
@@ -25,8 +25,8 @@ Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
-# Source0-md5:	8544fbf8e18ce1ecd3f7337365fdfc8b
 Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
+# Source0-md5:	b87c07fc3822cf90224d5d92d457473d
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
