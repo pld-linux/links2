@@ -46,7 +46,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.1
-BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	zlib-devel
 %if%{!?_without_graphics:1}%{?_without_graphics:0}
 BuildRequires:	libpng-devel
