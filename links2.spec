@@ -1,4 +1,5 @@
 #
+# TODO: -driver fb doesn't work without -mode
 # Conditional build:
 %bcond_without	javascript	# build without JavaScript interpreter
 %bcond_without	graphics	# build without graphics support
