@@ -17,7 +17,7 @@ Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 %define	pre	pre15
 Version:	2.1%{pre}
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -39,7 +39,9 @@ Patch9:		%{name}-gzip_fallback.patch
 Patch10:	%{name}-js-Date-getTime.patch
 Patch11:	%{name}-js-submit-nodefer.patch
 Patch12:	%{name}-segv.patch
-#Patch13:	%{name}-home_etc.patch
+Patch13:	%{name}-en-fixes.patch
+Patch14:	%{name}-pl-update.patch
+#Patch15:	%{name}-home_etc.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,6 +128,8 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
 %{__aclocal}
