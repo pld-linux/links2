@@ -18,8 +18,8 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-Version:	2.1pre7
-Release:	2
+Version:	2.1pre8
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -29,18 +29,17 @@ Source2:	%{name}.1.pl
 Source3:	%{name}.png
 Source4:	glinks.desktop
 Patch0:		%{name}-links-g_if_glinks.patch
-Patch1:		%{name}-ac.patch
-Patch2:		%{name}-ac25x.patch
-Patch3:		%{name}-reallyquit.patch
-Patch4:		%{name}-img.patch
-Patch5:		%{name}-convert-old-bookmarks.patch
-Patch6:		%{name}-cookies-save.patch
-Patch7:		%{name}-cookie-parsing.patch
-Patch8:		%{name}-config-dirs.patch
-Patch9:		%{name}-dump_codepage.patch
-Patch10:	%{name}-gzip_fallback.patch
-Patch11:	%{name}-js-Date-getTime.patch
-Patch12:	%{name}-js-submit-nodefer.patch
+Patch1:		%{name}-ac25x.patch
+Patch2:		%{name}-reallyquit.patch
+Patch3:		%{name}-img.patch
+Patch4:		%{name}-convert-old-bookmarks.patch
+Patch5:		%{name}-cookies-save.patch
+Patch6:		%{name}-cookie-parsing.patch
+Patch7:		%{name}-config-dirs.patch
+Patch8:		%{name}-dump_codepage.patch
+Patch9:		%{name}-gzip_fallback.patch
+Patch10:	%{name}-js-Date-getTime.patch
+Patch11:	%{name}-js-submit-nodefer.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,7 +125,6 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
 
 %build
 rm -f missing
@@ -150,8 +148,6 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/WWW,%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT%{_mandir}/pl/man1
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-#mv -f $RPM_BUILD_ROOT%{_bindir}/links $RPM_BUILD_ROOT%{_bindir}/links2
 
 %if%{!?_without_graphics:1}%{?_without_graphics:0}
 ln -sf links2 $RPM_BUILD_ROOT%{_bindir}/glinks
