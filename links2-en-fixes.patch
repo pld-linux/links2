@@ -1,0 +1,22 @@
+--- links-2.1pre15/intl/english.lng.orig	2004-04-28 15:03:37.000000000 +0200
++++ links-2.1pre15/intl/english.lng	2005-01-15 00:37:46.700254640 +0100
+@@ -187,8 +187,8 @@
+ T_ALREADY_EXISTS_AS_DOWNLOAD, "already exists as an active download.",
+ T_ALREADY_EXISTS, "already exists.",
+ T_DO_YOU_WISH_TO_OVERWRITE, "Do you wish to overwrite it?",
+-T_OVERWRITE, "Pøepsat",
+-T_RENAME, "Pøejmenovat",
++T_OVERWRITE, "Overwrite",
++T_RENAME, "Rename",
+ T_DOWNLOAD_ERROR, "Download error",
+ T_COULD_NOT_WRITE_TO_FILE, "Could not create file",
+ T_ERROR_DOWNLOADING, "Error downloading",
+@@ -363,7 +363,7 @@
+ T_BOOKMARKS_ALREADY_IN_USE, "Bookmarks are already in use!",
+ T_ASSOCIATIONS_ALREADY_IN_USE, "Associations are already in use!",
+ T_EXTENSIONS_ALREADY_IN_USE, "Extensions are already in use!",
+-T_VIDEO_OPTIONS_TEXT, "Recommended User gamma setting:\n 1.33 for dark room, 1.11 for very dim room, 1 form usual computer workspace lighting, 0.88 for bright environment lighting.",
++T_VIDEO_OPTIONS_TEXT, "Recommended User gamma setting:\n 1.33 for dark room, 1.11 for very dim room, 1 for usual computer workspace lighting, 0.88 for bright environment lighting.",
+ T_RED_DISPLAY_GAMMA, "Red display gamma",
+ T_GREEN_DISPLAY_GAMMA, "Green display gamma",
+ T_BLUE_DISPLAY_GAMMA, "Blue display gamma",
