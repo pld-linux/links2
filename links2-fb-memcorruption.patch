@@ -1,8 +1,5 @@
-fb_driver_param cannot use pointer passed from driver_param list, because
-driver_param elements are freed independently.
-
---- links-2.1pre16/framebuffer.c.orig	2005-01-22 21:51:53.000000000 +0100
-+++ links-2.1pre16/framebuffer.c	2005-02-05 01:34:28.821074080 +0100
+--- links-2.1pre17/framebuffer.c.orig	2005-02-24 17:17:57.000000000 +0100
++++ links-2.1pre17/framebuffer.c	2005-03-05 01:56:23.264083992 +0100
 @@ -1072,13 +1072,17 @@
  	kbd_set_raw = 1;
  	fb_old_vd = NULL;
@@ -17,10 +14,10 @@ driver_param elements are freed independently.
  	if (*param) {
  		if (*param < '0' || *param > '9')
 -			bad_p: return stracpy("-mode syntax is left_border[,top_border[,right_border[,bottom_border]]]\n");
-+			bad_p: 
++			{ bad_p:
 +				if(fb_driver_param) { mem_free(fb_driver_param); fb_driver_param=NULL; }
-+				return stracpy("-mode syntax is left_border[,top_border[,right_border[,bottom_border]]]\n");
- 		border_left = strtoul(param, (char **)&param, 10);
++				return stracpy("-mode syntax is left_border[,top_border[,right_border[,bottom_border]]]\n"); }
+ 		border_left = strtoul(param, (char **)(void *)&param, 10);
  		if (*param == ',') param++;
  	} else {
 @@ -1107,16 +1111,23 @@
