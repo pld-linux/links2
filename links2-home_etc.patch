@@ -1,0 +1,62 @@
+diff -Nru links-2.1pre9/default.c links-2.1pre9.new/default.c
+--- links-2.1pre9/default.c	Tue Mar 11 14:20:30 2003
++++ links-2.1pre9.new/default.c	Tue Mar 11 14:26:34 2003
+@@ -232,29 +232,12 @@
+ 	unsigned char *config_dir = stracpy(getenv("CONFIG_DIR"));
+ 
+ 	if (n) *n = 1;
+-	if (!home) {
+-		int i;
+-		home = stracpy(path_to_exe);
+-		if (!home) {
+-			if (config_dir) mem_free(config_dir);
+-			return NULL;
+-		}
+-		for (i = strlen(home) - 1; i >= 0; i--) if (dir_sep(home[i])) {
+-			home[i + 1] = 0;
+-			goto br;
+-		}
+-		home[0] = 0;
+-		br:;
+-	}
+-	while (home[0] && dir_sep(home[strlen(home) - 1])) home[strlen(home) - 1] = 0;
+-	if (home[0]) add_to_strn(&home, "/");
+-	home_links = stracpy(home);
+ 	if (config_dir) 	
+ 	{
+-		add_to_strn(&home_links, config_dir);
++		home_links = stracpy(config_dir);
+ 		while (home_links[0] && dir_sep(home_links[strlen(home_links) - 1])) home_links[strlen(home_links) - 1] = 0;
+ 		if (stat(home_links, &st) != -1 && S_ISDIR(st.st_mode)) {
+-			add_to_strn(&home_links, "/links");
++			add_to_strn(&home_links, "/links2");
+ 	    	} else {
+ 			fprintf(stderr, "CONFIG_DIR set to %s. But directory %s doesn't exist.\n\007", config_dir, home_links);
+ 			sleep(3);
+@@ -263,7 +246,25 @@
+ 			add_to_strn(&home_links, ".links2");		
+ 		}
+ 		mem_free(config_dir);
+-	} else add_to_strn(&home_links, ".links2");
++	} else {
++		if (!home) {
++			int i;
++			home = stracpy(path_to_exe);
++			if (!home) {
++				return NULL;
++			}
++			for (i = strlen(home) - 1; i >= 0; i--) if (dir_sep(home[i])) {
++				home[i + 1] = 0;
++				goto br;
++			}
++			home[0] = 0;
++			br:;
++		}
++		while (home[0] && dir_sep(home[strlen(home) - 1])) home[strlen(home) - 1] = 0;
++		if (home[0]) add_to_strn(&home, "/");
++		home_links = stracpy(home);
++		add_to_strn(&home_links, ".links2");
++	}
+ 	if (stat(home_links, &st)) {
+ 		if (!mkdir(home_links, 0777)) goto home_creat;
+ 		if (config_dir) goto failed;
