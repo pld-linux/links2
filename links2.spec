@@ -50,7 +50,7 @@ BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	zlib-devel
 %if%{!?_without_graphics:1}%{?_without_graphics:0}
-BuildRequires:	DirectFB-devel >= 0.9.17
++%{!?_without_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
 BuildRequires:	libpng-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
