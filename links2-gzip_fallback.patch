@@ -27,7 +27,7 @@
  		mem_free(name);
  		setcstate(c, -er); abort_connection(c); return;
  	}
-@@ -339,21 +344,51 @@
+@@ -339,21 +344,52 @@
  		close(h);
  		setcstate(c, S_FILE_TYPE); abort_connection(c); return;
  	} else {
@@ -62,6 +62,7 @@
 +		else 
 +#endif
 +		{
++				mem_free(name);
  		/* + 1 is there because of bug in Linux. Read returns -EACCES when
  		   reading 0 bytes to invalid address */
 -		if (!(file = mem_alloc(stt.st_size + 1))) {
