@@ -11,6 +11,8 @@
 %ifnarch %{ix86} alpha
 %define _without_svgalib 1
 %endif
+%define		pre	pre11
+
 Summary:	Lynx-like WWW browser
 Summary(es):	El links es un browser para modo texto, similar a lynx
 Summary(pl):	Podobna do Lynksa przegl╠darka WWW
@@ -18,8 +20,8 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-Version:	2.1pre9
-Release:	3
+Version:	2.1%{pre}
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -35,13 +37,13 @@ Patch2:		%{name}-reallyquit.patch
 Patch3:		%{name}-img.patch
 Patch4:		%{name}-convert-old-bookmarks.patch
 Patch5:		%{name}-cookies-save.patch
-Patch6:		%{name}-cookie-parsing.patch
+#Patch6:		%{name}-cookie-parsing.patch
 Patch7:		%{name}-config-dirs.patch
 Patch8:		%{name}-dump_codepage.patch
 Patch9:		%{name}-gzip_fallback.patch
 Patch10:	%{name}-js-Date-getTime.patch
-Patch11:	%{name}-js-submit-nodefer.patch
-Patch12:	%{name}-home_etc.patch
+#Patch11:	%{name}-js-submit-nodefer.patch
+#Patch12:	%{name}-home_etc.patch
 Patch13:	http://sven.gimp.org/links-directfb.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
@@ -123,14 +125,14 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
+#%patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
+#%patch11 -p1
 #%patch12 -p1
-%patch13 -p1
+#%patch13 -p1
 
 %build
 rm -f missing
