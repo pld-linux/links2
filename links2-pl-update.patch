@@ -383,7 +383,7 @@
 -T_JAVASCRIPT_ERROR, "B³±d skryptu javy",
 -T_JAVASCRIPT_WARNING, "Ostrzezenie skryptu javy",
 -T_DISMISS, "Olej",
-+T_JAVASCRIPT_ERROR, "B³±d Javascriptu,
++T_JAVASCRIPT_ERROR, "B³±d Javascriptu",
 +T_JAVASCRIPT_WARNING, "Ostrze¿enie Javascriptu",
 +T_DISMISS, "Pomiñ",
  T_MENU_FONT_SIZE, "Rozmiar fontu menu",
