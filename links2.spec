@@ -24,6 +24,7 @@ Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
+# Source0-md5:	d602768af82c3262051cca8f9aa76176
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
