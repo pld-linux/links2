@@ -10,4 +10,5 @@ Terminal=true
 Icon=links2.png
 Type=Application
 Encoding=UTF-8
+Categories=Network;WebBrowser;
 # vi: encoding=utf-8

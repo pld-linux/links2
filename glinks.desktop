@@ -7,4 +7,5 @@ Exec=glinks
 Terminal=false
 Icon=links2.png
 Type=Application
+Categories=Network;WebBrowser;
 # vi: encoding=utf-8
