@@ -9,4 +9,5 @@ Exec=links2
 Terminal=1
 Icon=links2.png
 Type=Application
+Encoding=UTF-8
 # vi: encoding=utf-8
