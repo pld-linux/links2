@@ -266,8 +266,9 @@
 @@ -307,116 +307,116 @@
  T_DELETE_BOOKMARK, "Usuñ zak³adkê",
  T_EDIT_FOLDER, "Edytuj folder",
- T_DELETE_FOLDER, "Usun folder",
+-T_DELETE_FOLDER, "Usun folder",
 -T_NOT_EMPTY_SURE_DELETE, "nie jest pusty. Naprawde chcesz go usunac ?",
++T_DELETE_FOLDER, "Usuñ folder",
 +T_NOT_EMPTY_SURE_DELETE, "nie jest pusty. Naprawdê chcesz go usun±æ?",
  T_BOOKMARK_MANAGER, "Obs³uga zak³adek",
 -T_ASSOCIATIONS_MANAGER, "Menedzer skojarzeñ",
