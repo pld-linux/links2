@@ -17,7 +17,7 @@ Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 %define	pre	pre15
 Version:	2.1%{pre}
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -130,6 +130,9 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+
+cd intl
+./gen-intl
 
 %build
 %{__aclocal}
