@@ -1,14 +1,14 @@
 .\" Process this file with groff -man -Tascii links.1
 .TH LINKS 1 "9 grudnia 1999"
 .SH NAZWA
-links \- Tekstowa przegl±darka WWW w stylu Lynx'a
+links \- Tekstowa przegl±darka WWW w stylu Lynksa
 .SH SK£ADNIA
 .B links
 .RI [ opcje ]
 .I URL
 .SH OPIS
 .B links
-to tekstowa przegl±darka www oparta na ncurses. Posiada kolorowy interfejs,
+to tekstowa przegl±darka WWW oparta na ncurses. Posiada kolorowy interfejs,
 renderuje tabele, pobiera pliki w tle, posiada menu oraz prosty i zwarty kod.
 .P 
 W tej chwili jeszcze nie w pe³ni obs³uguje wy¶wietlanie ramek, ale to 
@@ -38,7 +38,7 @@ wybierz odno¶nik
 powrót
 .TP
 .B g
-przejd¼ do URL
+przejd¼ do URL-a
 .TP
 .B /
 szukaj
@@ -68,7 +68,7 @@ Wiêkszo¶æ opcji mo¿e by¶ ustawionych bezpo¶rednio w przegl±darce lub w pliku
 konfiguracyjnym, wiêc nie musisz przejmowaæ siê zbytnio poni¿szymi:
 .TP
 \f3-async-dns \f2<0>/<1>\f1
-Asyncronous DNS resolver on(1)/off(0). 
+Asynchroniczna obs³uga DNS w³±czona(1)/wy³±czona(0). 
 .TP
 \f3-max-connections \f2<maks>\f1
 Maksymalna liczba jednoczesnych po³±czeñ.
@@ -83,11 +83,11 @@ Liczba prób nawi±zania po³±czenia.
 (domy¶lnie: 3)
 .TP
 \f3-receive-timeout \f2<sek>\f1
-Maksymalny czas na nawiazanie po³±czenia.
+Maksymalny czas na nawi±zanie po³±czenia.
 (domy¶lnie: 120)
 .TP
 \f3-unrestartable-receive-timeout \f2<sek>\f1
-Maksymalny czas na nawiazanie niewznawialnego po³±czenia.
+Maksymalny czas na nawi±zanie niewznawialnego po³±czenia.
 (domy¶lnie: 600)
 .TP
 \f3-format-cache-size \f2<liczba>\f1
@@ -152,7 +152,7 @@ jest
 .P
 Ta strona manuala zosta³a napisana przez Grin <grin@tolna.net>,
 wielkiego zwolennika
-.BR links ,
+.BR linksa ,
 który u¿ywa tej przegl±darki na systemie Debian GNU/Linux.
 .P 
 T³umaczenia dokona³ Arkadiusz 'Jo Joro' Sochala <jojoro@poczta.onet.pl>
