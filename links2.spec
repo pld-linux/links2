@@ -40,6 +40,7 @@ Patch8:		%{name}-dump_codepage.patch
 Patch9:		%{name}-gzip_fallback.patch
 Patch10:	%{name}-js-Date-getTime.patch
 Patch11:	%{name}-js-submit-nodefer.patch
+Patch12:	%{name}-home_etc.patch
 URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -125,6 +126,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 %build
 rm -f missing
