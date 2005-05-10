@@ -15,7 +15,7 @@
  
  #include "cfg.h"
  #include "os_dep.h"
-+#include <libgen.h>
++#include <string.h>
  #include <stdio.h>
  #include <stdlib.h>
  #include <stdarg.h>
