@@ -16,7 +16,7 @@ Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 %define	pre	pre19
 Version:	2.1%{pre}
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
