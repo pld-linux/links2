@@ -14,14 +14,14 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-%define	pre	pre18
+%define	pre	pre19
 Version:	2.1%{pre}
 Release:	1
-Epoch:		1
+Epoch:		0.1
 License:	GPL v2
 Group:		Applications/Networking
-Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-# Source0-md5:	4e2a5b23325db1be44250ae5644d4a8c
+Source0:	http://links.twibright.com/download/links-2.1pre19.tar.bz2
+# Source0-md5:	41521f4608b60baf1157f700d5943554
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
@@ -37,10 +37,8 @@ Patch8:		%{name}-gzip_fallback.patch
 Patch9:		%{name}-js-Date-getTime.patch
 Patch10:	%{name}-js-submit-nodefer.patch
 Patch11:	%{name}-segv.patch
-Patch12:	%{name}-pl-update.patch
-Patch13:	%{name}-fb-memcorruption.patch
 #Patch15:	%{name}-home_etc.patch
-URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
+URL:		http://links.twibright.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_javascript:BuildRequires:	bison}
@@ -126,8 +124,6 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
-%patch13 -p1
 
 cd intl
 ./gen-intl
