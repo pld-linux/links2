@@ -1,0 +1,11 @@
+--- links-2.1pre19/intl/polish.lng.org	2005-08-09 16:06:25.000000000 +0200
++++ links-2.1pre19/intl/polish.lng	2005-10-11 19:08:25.782220488 +0200
+@@ -364,7 +364,7 @@
+ T_AT, "na ",
+ T_SSL_ERROR, "B³±d SSL",
+ T_NO_SSL, "Ta wersja Linksa nie posiada obs³ugi SSL/TLS",
+-T_NO_SMB_CLIENT, NULL,
++T_NO_SMB_CLIENT, "Brak zainstalowanego klienta smb (obs³ugiwane s± smbclient i smbc)",
+ T_SURE_DELETE, "Jeste¶ pewny, ze chcesz usun±æ",
+ T_BOOKMARKS_ALREADY_IN_USE, "Zak³adki w u¿yciu!",
+ T_ASSOCIATIONS_ALREADY_IN_USE, "Skojarzenia w u¿yciu!",
