@@ -32,6 +32,7 @@ Patch2:		%{name}-reallyquit.patch
 Patch3:		%{name}-img.patch
 Patch4:		%{name}-convert-old-bookmarks.patch
 Patch5:		%{name}-cookies-save.patch
+Patch6:		%{name}-pl-update.patch
 Patch7:		%{name}-config-dirs.patch
 Patch8:		%{name}-gzip_fallback.patch
 Patch9:		%{name}-js-Date-getTime.patch
@@ -119,6 +120,7 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
