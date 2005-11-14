@@ -15,12 +15,13 @@ Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
 %define	pre	pre19
+# XXX: stop using "pre" in Version after 2.1 release!
 Version:	2.1%{pre}
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
-Source0:	http://links.twibright.com/download/links-2.1pre19.tar.bz2
+Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
 # Source0-md5:	41521f4608b60baf1157f700d5943554
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
