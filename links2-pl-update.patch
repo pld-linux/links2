@@ -1,38 +1,11 @@
---- links-2.1pre20/intl/polish.lng.orig	2005-12-07 21:19:06.000000000 +0100
-+++ links-2.1pre20/intl/polish.lng	2005-12-24 20:19:06.585012824 +0100
-@@ -39,7 +39,7 @@
- T_CACHE_INFO, "Informacje o pamiêci podrêcznej",
- T_CACHE_CONTENT, "Zawarto¶æ pamiêci podrêcznej",
- T_MEMORY_ALLOCATED, "przydzielonej pamiêci",
--T_JS_MEMORY_ALLOCATED, NULL,
-+T_JS_MEMORY_ALLOCATED, "przydzielonej pamiêci dla javascriptu",
- T_LAST, "ostatnio",
- T_DIFFERENCE, "ró¿nica",
- T_DIFFERENCES, "Ró¿nice",
-@@ -159,7 +159,7 @@
- T_REQUEST_MUST_BE_RESTARTED, "¯±danie musi byæ powtórzone",
- T_CANT_GET_SOCKET_STATE, "Nie mo¿na zbadaæ stanu gniazda",
- T_CYCLIC_REDIRECT, "Cykliczne przekierowanie",
--T_TOO_LARGE_FILE, NULL,
-+T_TOO_LARGE_FILE, "Plik zbyt du¿y",
- T_BAD_HTTP_RESPONSE, "Nieprawid³owa odpowied¼ HTTP",
- T_HTTP_100, NULL,
- T_NO_CONTENT, "Plik pusty",
-@@ -329,7 +329,7 @@
- T_REFERER_NONE, "Bez nag³ówka Referer",
- T_REFERER_SAME_URL, "Wysy³aj ¿±dany URL jako Referer",
- T_REFERER_FAKE, "Sta³y nag³ówek Referer",
--T_REFERER_REAL_SAME_SERVER, NULL,
-+T_REFERER_REAL_SAME_SERVER, "Wysy³aj prawdziwy Referer tylko do tego samego serwera",
- T_REFERER_REAL, "Wysy³aj prawdziwy Referer (standardowe zachowanie, NIEBEZPIECZNE!)",
- T_ALLOW_SERVER_BLACKLIST, "Akceptuj czarn± listê zapluskwionych serwerów",
- T_BROKEN_302_REDIRECT, "Z³e przeniesienia 302 (niezgodne z RFC ale kompatybilne z Netscape)",
-@@ -428,7 +428,7 @@
- T_COPY_LINK_LOCATION, "Skopiuj po³o¿enie odno¶nika",
- T_COPY_URL_LOCATION, "Skopiuj po³o¿enie URL-a",
- T_BLOCK_URL, "Zablokuj obrazek",
--T_BLOCKED_URL, NULL,
-+T_BLOCKED_URL, "Ten URL jest na li¶cie zablokowanych",
- T_BLOCK_LIST, "Zablokowane obrazki",
- T_BLOCK_LIST_IN_USE, "Zablokowane obrazki s± ju¿ otwarte",
- T_BLOCK_LIST_MANAGER, "Mened¿er blokowania obrazków",
+--- links-2.1pre21/intl/polish.lng.orig	2006-03-11 02:44:00.000000000 +0100
++++ links-2.1pre21/intl/polish.lng	2006-04-17 20:58:19.686700750 +0200
+@@ -340,7 +340,7 @@
+ T_PASSWORD_FOR_ANONYMOUS_LOGIN, "Has³o dla logowania anonimowego",
+ T_USE_PASSIVE_FTP, "U¿ywaj pasywnego FTP",
+ T_USE_FAST_FTP, "U¿ywaj szybkiego FTP",
+-T_SET_TYPE_OF_SERVICE, NULL,
++T_SET_TYPE_OF_SERVICE, "Ustaw typ us³ugi IP (ToS)",
+ T_MANUAL, "Podrêcznik u¿ytkownika",
+ T_HOMEPAGE, "Strona domowa",
+ T_CALIBRATION, "Kalibracja",
