@@ -14,7 +14,7 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-%define	pre	pre22
+%define	pre	pre23
 # XXX: stop using "pre" in Version after 2.1 release!
 Version:	2.1%{pre}
 Release:	1
@@ -22,23 +22,22 @@ Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
-# Source0-md5:	295cdafaa0e7cf5eb5a46de4352f2d3f
+# Source0-md5:	4a1fb575c133eee821b9a1f8e9220b40
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
 Source4:	glinks.desktop
 Patch0:		%{name}-links-g_if_glinks.patch
 Patch1:		%{name}-ac25x.patch
-Patch2:		%{name}-reallyquit.patch
-Patch3:		%{name}-img.patch
-Patch4:		%{name}-convert-old-bookmarks.patch
-Patch5:		%{name}-cookies-save.patch
-Patch6:		%{name}-pl-update.patch
-Patch7:		%{name}-config-dirs.patch
-Patch8:		%{name}-gzip_fallback.patch
-Patch9:		%{name}-js-Date-getTime.patch
-Patch10:	%{name}-js-submit-nodefer.patch
-Patch11:	%{name}-segv.patch
+Patch2:		%{name}-img.patch
+Patch3:		%{name}-convert-old-bookmarks.patch
+Patch4:		%{name}-cookies-save.patch
+Patch5:		%{name}-pl-update.patch
+Patch6:		%{name}-config-dirs.patch
+Patch7:		%{name}-gzip_fallback.patch
+Patch8:		%{name}-js-Date-getTime.patch
+Patch9:		%{name}-js-submit-nodefer.patch
+Patch10:	%{name}-segv.patch
 #Patch15:	%{name}-home_etc.patch
 URL:		http://links.twibright.com/
 BuildRequires:	autoconf >= 2.59-9
@@ -126,7 +125,6 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
 
 cd intl
 ./gen-intl
