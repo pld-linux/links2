@@ -8,11 +8,11 @@
 %bcond_without	x		# build without X Window System graphics driver
 #
 Summary:	Lynx-like WWW browser
-Summary(es.UTF-8):   El links es un browser para modo texto, similar a lynx
-Summary(pl.UTF-8):   Podobna do Lynksa przeglądarka WWW
-Summary(pt_BR.UTF-8):   O links é um browser para modo texto, similar ao lynx
-Summary(ru.UTF-8):   Текстовый WWW броузер типа Lynx
-Summary(uk.UTF-8):   Текстовий WWW броузер типу Lynx
+Summary(es.UTF-8):	El links es un browser para modo texto, similar a lynx
+Summary(pl.UTF-8):	Podobna do Lynksa przeglądarka WWW
+Summary(pt_BR.UTF-8):	O links é um browser para modo texto, similar ao lynx
+Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
+Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
 %define	pre	pre26
 # XXX: stop using "pre" in Version after 2.1 release!
