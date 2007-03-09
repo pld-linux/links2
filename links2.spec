@@ -50,11 +50,11 @@ BuildRequires:	zlib-devel
 %if %{with graphics}
 %{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
 %{?with_sdl:BuildRequires:	SDL-devel >= 1.2.0}
+%{?with_x:BuildRequires:	XFree86-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 %{?with_svga:BuildRequires:	svgalib-devel}
-%{?with_x:BuildRequires:	xorg-lib-libX11-devel}
 %endif
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
