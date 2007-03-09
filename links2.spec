@@ -14,35 +14,32 @@ Summary(pt_BR):	O links И um browser para modo texto, similar ao lynx
 Summary(ru):	Текстовый WWW броузер типа Lynx
 Summary(uk):	Текстовий WWW броузер типу Lynx
 Name:		links2
-%define	pre	pre17
+%define	pre	pre26
+# XXX: stop using "pre" in Version after 2.1 release!
 Version:	2.1%{pre}
-Release:	4
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
-Source0:	ftp://atrey.karlin.mff.cuni.cz/pub/local/clock/links/links-%{version}.tar.bz2
-# Source0-md5:	94315d9ba68bbb543d93b3b3b4f07582
+Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
+# Source0-md5:	841af2540c789e254b8465e07e24c684
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
 Source4:	glinks.desktop
 Patch0:		%{name}-links-g_if_glinks.patch
 Patch1:		%{name}-ac25x.patch
-Patch2:		%{name}-reallyquit.patch
-Patch3:		%{name}-img.patch
-Patch4:		%{name}-convert-old-bookmarks.patch
-Patch5:		%{name}-cookies-save.patch
-Patch7:		%{name}-config-dirs.patch
-Patch8:		%{name}-gzip_fallback.patch
-Patch9:		%{name}-js-Date-getTime.patch
-Patch10:	%{name}-js-submit-nodefer.patch
-Patch11:	%{name}-segv.patch
-Patch12:	%{name}-pl-update.patch
-Patch13:	%{name}-ac.patch
-Patch14:	%{name}-fb-memcorruption.patch
+Patch2:		%{name}-img.patch
+Patch3:		%{name}-convert-old-bookmarks.patch
+Patch4:		%{name}-cookies-save.patch
+Patch5:		%{name}-config-dirs.patch
+Patch6:		%{name}-gzip_fallback.patch
+Patch7:		%{name}-js-Date-getTime.patch
+Patch8:		%{name}-js-submit-nodefer.patch
+Patch9:		%{name}-segv.patch
 #Patch15:	%{name}-home_etc.patch
-URL:		http://atrey.karlin.mff.cuni.cz/~clock/twibright/links/
-BuildRequires:	autoconf
+URL:		http://links.twibright.com/
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 %{?with_javascript:BuildRequires:	bison}
 %{?with_javascript:BuildRequires:	flex}
@@ -122,17 +119,13 @@ Links - це текстовий WWW броузер, на перший погляд схожий на Lynx, але
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
 
-cd intl
-./gen-intl
+#cd intl
+#./gen-intl
 
 %build
 %{__aclocal}
@@ -175,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README SITES TODO
 %attr(755,root,root) %{_bindir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
 %{_mandir}/man*/*
 %lang(pl) %{_mandir}/pl/man*/*
