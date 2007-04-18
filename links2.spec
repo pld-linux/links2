@@ -43,6 +43,7 @@ URL:		http://links.twibright.com/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 %{?with_javascript:BuildRequires:	bison}
+BuildRequires:	bzip2-devel
 %{?with_javascript:BuildRequires:	flex}
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.1
