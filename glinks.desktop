@@ -1,11 +1,10 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=gLinks
 Comment=Graphical links
 Comment[pl]=Graficzny links
 Exec=glinks
 Terminal=false
-Icon=links2.png
+Icon=links2
 Type=Application
 Categories=Network;WebBrowser;
 # vi: encoding=utf-8
