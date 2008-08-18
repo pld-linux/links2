@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_without	javascript	# build without JavaScript interpreter
 %bcond_without	graphics	# build without graphics support
 %bcond_without	fb		# build without Linux Framebuffer graphics driver
 %bcond_without	sdl		# build without SDL graphics driver
@@ -14,15 +13,15 @@ Summary(pt_BR.UTF-8):	O links é um browser para modo texto, similar ao lynx
 Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
-%define	pre	pre28
+#%define	pre	pre28
 # XXX: stop using "pre" in Version after 2.1 release!
-Version:	2.1%{pre}
-Release:	2
+Version:	2.2
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
-# Source0-md5:	815afe558dd548258eeb03b01cce01ce
+# Source0-md5:	bf5b20529a2a811701c5af52b28ebdd4
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
@@ -34,17 +33,15 @@ Patch3:		%{name}-convert-old-bookmarks.patch
 Patch4:		%{name}-cookies-save.patch
 Patch5:		%{name}-config-dirs.patch
 Patch6:		%{name}-gzip_fallback.patch
-Patch7:		%{name}-js-Date-getTime.patch
-Patch8:		%{name}-js-submit-nodefer.patch
+#Patch7:		%{name}-js-Date-getTime.patch
+#Patch8:		%{name}-js-submit-nodefer.patch
 Patch9:		%{name}-segv.patch
-Patch10:	%{name}-pl-update.patch
+#Patch10:	%{name}-pl-update.patch
 #Patch15:	%{name}-home_etc.patch
 URL:		http://links.twibright.com/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
-%{?with_javascript:BuildRequires:	bison}
 BuildRequires:	bzip2-devel
-%{?with_javascript:BuildRequires:	flex}
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -71,7 +68,6 @@ different:
 - can download files in background.
 
 %{?with_graphics:This version can work in graphical mode.}
-%{?with_javascript:This version has support for JavaScript.}
 
 %description -l es.UTF-8
 Links es un browser WWW modo texto, similar al Lynx. El links muestra
@@ -88,7 +84,6 @@ ale mimo wszystko inną:
 - może ściągać pliki w tle.
 
 %{?with_graphics:Ta wersja może pracować w trybie graficznym.}
-%{?with_javascript:Ta wersja obsługuje JavaScript.}
 
 %description -l pt_BR.UTF-8
 Links é um browser WWW modo texto, similar ao Lynx. O Links exibe
@@ -122,10 +117,10 @@ Links - це текстовий WWW броузер, на перший погля
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
+#%patch7 -p1
+#%patch8 -p1
 %patch9 -p1
-%patch10 -p1
+#%patch10 -p1
 
 cd intl
 ./gen-intl
