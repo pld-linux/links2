@@ -16,7 +16,7 @@ Name:		links2
 #%define	pre	pre28
 # XXX: stop using "pre" in Version after 2.1 release!
 Version:	2.2
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
