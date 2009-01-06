@@ -13,8 +13,6 @@ Summary(pt_BR.UTF-8):	O links é um browser para modo texto, similar ao lynx
 Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
-#%define	pre	pre28
-# XXX: stop using "pre" in Version after 2.1 release!
 Version:	2.2
 Release:	3
 Epoch:		1
@@ -133,11 +131,11 @@ cd intl
 %configure \
 	--program-suffix=2 \
 	%{?with_graphics:--enable-graphics} \
-	%{?with_javascript:--enable-javascript} \
 	%{!?with_fb:--without-fb} \
 	%{!?with_sdl:--without-sdl} \
 	%{!?with_svga:--without-svgalib} \
 	%{!?with_x:--without-x}
+
 %{__make}
 
 %install
