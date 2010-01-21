@@ -1,6 +1,16 @@
---- links-2.1pre16/main.c.orig	2005-01-22 21:51:55.000000000 +0100
-+++ links-2.1pre16/main.c	2005-01-28 20:17:55.145127144 +0100
-@@ -274,6 +274,7 @@
+--- links-2.2/main.c	2007-12-11 17:45:38.000000000 +0100
++++ links-2.2/main.c.new	2010-01-21 22:00:22.020403979 +0100
+@@ -4,6 +4,9 @@
+  * This file is a part of the Links program, released under GPL.
+  */
+ 
++#define _GNU_SOURCE
++#include <string.h>
++
+ #include "links.h"
+ 
+ int retval = RET_OK;
+@@ -298,6 +301,7 @@
  		retval = RET_SYNTAX;
  		goto ttt;
  	}
