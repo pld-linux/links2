@@ -3,7 +3,7 @@
 %bcond_without	graphics	# build without graphics support
 %bcond_without	fb		# build without Linux Framebuffer graphics driver
 %bcond_without	sdl		# build without SDL graphics driver
-%bcond_without	svga		# build without svgalib graphics driver
+%bcond_with	svga		# build without svgalib graphics driver
 %bcond_without	x		# build without X Window System graphics driver
 #
 Summary:	Lynx-like WWW browser
@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
 Version:	2.2
-Release:	8
+Release:	9
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
