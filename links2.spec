@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
 Version:	2.2
-Release:	10
+Release:	11
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
