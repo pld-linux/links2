@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
 Version:	2.2
-Release:	12
+Release:	13
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -36,6 +36,7 @@ Patch6:		%{name}-gzip_fallback.patch
 Patch9:		%{name}-segv.patch
 #Patch10:	%{name}-pl-update.patch
 #Patch15:	%{name}-home_etc.patch
+Patch16:	%{name}-libpng15.patch
 URL:		http://links.twibright.com/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -120,6 +121,7 @@ Links - це текстовий WWW броузер, на перший погля
 #%patch8 -p1
 %patch9 -p1
 #%patch10 -p1
+%patch16 -p1
 
 cd intl
 ./gen-intl
