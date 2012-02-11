@@ -1,0 +1,1 @@
+- /Source:/ {sub("current", "%{version}")}  ;-)
