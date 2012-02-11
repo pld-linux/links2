@@ -1,0 +1,4 @@
+- added dump_codepage patch (enable to dump iso8859-2 codepage to stdout)
+- cosmetics
+- rel 6
+  STBR
