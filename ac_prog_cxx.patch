@@ -1,0 +1,11 @@
+--- links-2.7/configure.in.old	2013-04-06 20:56:02.641704629 +0200
++++ links-2.7/configure.in	2013-04-06 20:56:18.208612038 +0200
+@@ -18,7 +18,7 @@ AC_CONFIG_HEADERS(config.h)
+ dnl Checks for programs.
+ AC_PROG_CC
+ 
+-#AC_PROG_CXX
++AC_PROG_CXX
+ #AC_PROG_AWK
+ #AM_PROG_LEX
+ #AC_PROG_YACC

@@ -1,0 +1,11 @@
+--- links-2.7/configure.in.old	2013-04-06 20:22:33.003959516 +0200
++++ links-2.7/configure.in	2013-04-06 20:22:48.727535993 +0200
+@@ -14,7 +14,7 @@ AUTOMAKE="./missing automake"
+ AUTOHEADER="./missing autoheader"
+ image_formats="GIF PNG XBM"
+ 
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS(config.h)
+ 
+ dnl Checks for programs.
+ AC_PROG_CC
