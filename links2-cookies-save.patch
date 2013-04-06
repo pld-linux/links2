@@ -59,7 +59,7 @@ diff -ru links-0.96/cookies.c links-0.96+cookies-save/cookies.c
 +		
 +		cookie->secure = atoi(p);
 +		
-+		cookie->id = cookie_id++;
++		/*cookie->id = cookie_id++;*/
 +
 +		accept_cookie(cookie);
 +
