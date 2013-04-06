@@ -13,30 +13,32 @@ Summary(pt_BR.UTF-8):	O links é um browser para modo texto, similar ao lynx
 Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
-Version:	2.2
-Release:	14
+Version:	2.7
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
-# Source0-md5:	bf5b20529a2a811701c5af52b28ebdd4
+# Source0-md5:	d06aa6e14b2172d73188871a5357185a
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
 Source4:	glinks.desktop
 Patch0:		%{name}-links-g_if_glinks.patch
-Patch1:		%{name}-ac25x.patch
-Patch2:		%{name}-img.patch
-Patch3:		%{name}-convert-old-bookmarks.patch
+##Patch1:		%{name}-ac25x.patch
+##Patch2:		%{name}-img.patch
+##Patch3:		%{name}-convert-old-bookmarks.patch
 Patch4:		%{name}-cookies-save.patch
 Patch5:		%{name}-config-dirs.patch
-Patch6:		%{name}-gzip_fallback.patch
+##Patch6:		%{name}-gzip_fallback.patch
 #Patch7:		%{name}-js-Date-getTime.patch
 #Patch8:		%{name}-js-submit-nodefer.patch
-Patch9:		%{name}-segv.patch
+##Patch9:		%{name}-segv.patch
 #Patch10:	%{name}-pl-update.patch
 #Patch15:	%{name}-home_etc.patch
-Patch16:	%{name}-libpng15.patch
+##Patch16:	%{name}-libpng15.patch
+Patch17:	ac_config_headers.patch
+Patch18:	ac_prog_cxx.patch
 URL:		http://links.twibright.com/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -111,33 +113,37 @@ Links - це текстовий WWW броузер, на перший погля
 %prep
 %setup -q -n links-%{version}
 %{?with_graphics:%patch0 -p1}
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
+#%patch6 -p1
 #%patch7 -p1
 #%patch8 -p1
-%patch9 -p1
+#%patch9 -p1
 #%patch10 -p1
-%patch16 -p1
+#%patch16 -p1
+%patch17 -p1
+%patch18 -p1
 
 cd intl
 ./gen-intl
 
 %build
+#autoreconf -ifv
 %{__aclocal}
+%{__automake}
 %{__autoconf}
 %{__autoheader}
-%{__automake}
 %configure \
 	--program-suffix=2 \
 	%{?with_graphics:--enable-graphics} \
 	%{!?with_fb:--without-fb} \
 	%{!?with_sdl:--without-sdl} \
 	%{!?with_svga:--without-svgalib} \
-	%{!?with_x:--without-x}
+	%{!?with_x:--without-x} \
+	--with-ssl
 
 %{__make}
 
@@ -165,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS ChangeLog README SITES TODO
+%doc AUTHORS ChangeLog README SITES
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
