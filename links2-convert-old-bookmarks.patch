@@ -1,8 +1,8 @@
---- links-2.0pre1/bookmarks.c.pix	2002-05-20 09:58:06.000000000 +0200
-+++ links-2.0pre1/bookmarks.c	2002-05-22 14:29:30.000000000 +0200
-@@ -643,6 +643,18 @@
+--- links-2.7/bookmarks.c.orig	2013-06-23 18:55:29.428859752 +0200
++++ links-2.7/bookmarks.c	2013-06-23 19:03:09.398840448 +0200
+@@ -716,6 +716,18 @@
  	if (!*bookmarks_file)
- 		snprintf(bookmarks_file,MAX_STR_LEN,"%sbookmarks.html",links_home);
+ 		snprintf(cast_char bookmarks_file,MAX_STR_LEN,"%sbookmarks.html",links_home?links_home:(unsigned char*)"");
  
 +	/* try to create bookmarks.html based on old bookmarks (from links <= 0.97) */
 +	if (access(bookmarks_file, R_OK) != 0) {
@@ -16,6 +16,6 @@
 +	  }
 +	}
 +
- 	bookmark_ld.codepage=get_cp_index("utf-8");
- 	load_bookmarks();
+ 	bookmark_ld.codepage=utf8_table;
+ 	load_bookmarks(NULL);
  }

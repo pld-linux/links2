@@ -25,18 +25,16 @@ Source2:	%{name}.1.pl
 Source3:	%{name}.png
 Source4:	glinks.desktop
 Patch0:		%{name}-links-g_if_glinks.patch
-##Patch1:		%{name}-ac25x.patch
-##Patch2:		%{name}-img.patch
-##Patch3:		%{name}-convert-old-bookmarks.patch
+Patch2:		%{name}-img.patch
+Patch3:		%{name}-convert-old-bookmarks.patch
 Patch4:		%{name}-cookies-save.patch
 Patch5:		%{name}-config-dirs.patch
-##Patch6:		%{name}-gzip_fallback.patch
+Patch6:		%{name}-gzip_fallback.patch
 #Patch7:		%{name}-js-Date-getTime.patch
 #Patch8:		%{name}-js-submit-nodefer.patch
-##Patch9:		%{name}-segv.patch
+Patch9:		%{name}-segv.patch
 #Patch10:	%{name}-pl-update.patch
 #Patch15:	%{name}-home_etc.patch
-##Patch16:	%{name}-libpng15.patch
 Patch17:	ac_config_headers.patch
 Patch18:	ac_prog_cxx.patch
 URL:		http://links.twibright.com/
@@ -113,17 +111,15 @@ Links - це текстовий WWW броузер, на перший погля
 %prep
 %setup -q -n links-%{version}
 %{?with_graphics:%patch0 -p1}
-#%patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
+%patch2 -p1
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
-#%patch6 -p1
+%patch6 -p1
 #%patch7 -p1
 #%patch8 -p1
-#%patch9 -p1
+%patch9 -p1
 #%patch10 -p1
-#%patch16 -p1
 %patch17 -p1
 %patch18 -p1
 
@@ -131,7 +127,6 @@ cd intl
 ./gen-intl
 
 %build
-#autoreconf -ifv
 %{__aclocal}
 %{__automake}
 %{__autoconf}

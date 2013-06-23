@@ -1,11 +1,10 @@
-diff -urN aaa/links-2.0pre6/html.c links-2.0pre6/html.c
---- aaa/links-2.0pre6/html.c	Mon May 20 00:32:57 2002
-+++ links-2.0pre6/html.c	Sun Jun 16 12:02:57 2002
-@@ -838,7 +838,54 @@
- 			if (!d_opt->images && !format.link) goto ret;
- 			if (usemap) al = stracpy("[USEMAP]");
- 			else if (ismap) al = stracpy("[ISMAP]");
--			else al = stracpy("[IMG]");
+--- links-2.7/html.c.orig	2013-06-23 18:17:51.248954518 +0200
++++ links-2.7/html.c	2013-06-23 18:30:42.988922132 +0200
+@@ -1062,7 +1062,54 @@
+ 				add_to_strn(&al, cast_uchar "]");
+ 			} else if (usemap) al = stracpy(cast_uchar "[USEMAP]");
+ 			else if (ismap) al = stracpy(cast_uchar "[ISMAP]");
+-			else al = stracpy(cast_uchar "[IMG]");
 +			else{
 +				unsigned char *str = get_attr_val(a, "src");
 +				unsigned char *s;
