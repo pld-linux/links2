@@ -30,11 +30,8 @@ Patch3:		%{name}-convert-old-bookmarks.patch
 Patch4:		%{name}-cookies-save.patch
 Patch5:		%{name}-config-dirs.patch
 Patch6:		%{name}-gzip_fallback.patch
-#Patch7:		%{name}-js-Date-getTime.patch
-#Patch8:		%{name}-js-submit-nodefer.patch
 Patch9:		%{name}-segv.patch
-#Patch10:	%{name}-pl-update.patch
-#Patch15:	%{name}-home_etc.patch
+Patch10:	%{name}-pl-update.patch
 Patch17:	ac_config_headers.patch
 Patch18:	ac_prog_cxx.patch
 URL:		http://links.twibright.com/
@@ -116,10 +113,8 @@ Links - це текстовий WWW броузер, на перший погля
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-#%patch7 -p1
-#%patch8 -p1
 %patch9 -p1
-#%patch10 -p1
+%patch10 -p1
 %patch17 -p1
 %patch18 -p1
 
