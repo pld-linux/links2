@@ -4,8 +4,8 @@
  dnl Checks for programs.
  AC_PROG_CC
  
--#AC_PROG_CXX
+-dnl AC_PROG_CXX
 +AC_PROG_CXX
- #AC_PROG_AWK
- #AM_PROG_LEX
- #AC_PROG_YACC
+ dnl AC_PROG_AWK
+ dnl AM_PROG_LEX
+ dnl AC_PROG_YACC

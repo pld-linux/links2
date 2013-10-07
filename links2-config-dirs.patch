@@ -9,9 +9,9 @@
  Per-user configfile, automatically created by
  .B links.
  .SH PLATFORMS
---- links-2.7/default.c.old	2013-04-06 20:36:00.496447136 +0200
-+++ links-2.7/default.c	2013-04-06 20:38:36.712196281 +0200
-@@ -666,16 +666,16 @@ skip_path_conv:;
+--- links-2.8/default.c	2013-08-26 01:08:07.000000000 +0200
++++ links-2.8/default.c.new	2013-10-07 19:37:27.079790294 +0200
+@@ -729,16 +729,16 @@
  		while (home_links[0] && dir_sep(home_links[strlen(cast_const_char home_links) - 1])) home_links[strlen(cast_const_char home_links) - 1] = 0;
  		EINTRLOOP(rs, stat(cast_const_char home_links, &st));
  		if (!rs && S_ISDIR(st.st_mode)) {
@@ -28,15 +28,6 @@
  		mem_free(config_dir);
 -	} else add_to_strn(&home_links, cast_uchar ".links");
 +	} else add_to_strn(&home_links, cast_uchar ".links2");
- 	EINTRLOOP(rs, stat(cast_const_char home_links, &st));
- 	if (rs) {
- #ifdef HAVE_MKDIR
-@@ -696,7 +696,7 @@ skip_path_conv:;
- 	first_failed:
- 	mem_free(home_links);
- 	home_links = stracpy(home);
--	add_to_strn(&home_links, cast_uchar "links");
-+	add_to_strn(&home_links, cast_uchar "links2");
  	EINTRLOOP(rs, stat(cast_const_char home_links, &st));
  	if (rs) {
  #ifdef HAVE_MKDIR

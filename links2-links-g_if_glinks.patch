@@ -10,11 +10,11 @@
  #include "links.h"
  
  int retval = RET_OK;
-@@ -298,6 +301,7 @@
- 		retval = RET_SYNTAX;
- 		goto ttt;
- 	}
-+	if (strncmp (basename(path_to_exe), "glinks", 6) == 0) ggr = 1;
- 	if (ggr_drv[0] || ggr_mode[0]) ggr = 1;
+@@ -290,6 +290,7 @@
+ 
+ static void fixup_g(void)
+ {
++	if (strncmp(basename(path_to_exe), "glinks", 6) == 0) ggr = 1;
+ 	if (ggr_drv[0] || ggr_mode[0] || force_g) ggr = 1;
  	if (dmp) ggr = 0;
- 	if (!ggr && !no_connect && (uh = bind_to_af_unix()) != -1) {
+ }
