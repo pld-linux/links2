@@ -1,19 +1,20 @@
---- links-2.7/file.c.orig	2013-06-23 19:03:40.928839125 +0200
-+++ links-2.7/file.c	2013-06-23 19:40:15.742080351 +0200
-@@ -233,11 +233,16 @@
- 		mem_free(name);
- 		setcstate(c, S_FILE_TYPE); abort_connection(c); return;
- 	}
-+opening:	
- 	EINTRLOOP(h, open(cast_const_char name, O_RDONLY | O_NOCTTY));
- 	if (h == -1) {
- 		int er = errno;
- 		ENULLLOOP(d, opendir(cast_const_char name));
- 		if (d) goto dir;
-+		if (strncmp(name + strlen(name) - 3, ".gz", 3) != 0) {
-+			add_to_strn(&name, ".gz");
-+			goto opening;
-+		} 
- 		mem_free(name);
- 		setcstate(c, get_error_from_errno(er));
+--- links-2.10/file.c.gzip	2015-07-15 12:17:21.831370450 +0200
++++ links-2.10/file.c	2015-07-15 12:17:25.037715949 +0200
+@@ -224,11 +224,17 @@ void file_func(struct connection *c)
  		abort_connection(c);
+ 		return;
+ 	}
++opening:
+ 	if (!(name = get_filename(c->url))) {
+ 		setcstate(c, S_OUT_OF_MEM); abort_connection(c); return;
+ 	}
+ 	EINTRLOOP(rs, stat(cast_const_char name, &stt));
+ 	if (rs) {
++		if (strncmp(c->url + strlen(c->url) - 3, ".gz", 3) != 0) {
++			add_to_strn(&c->url, ".gz");
++			mem_free(name);
++			goto opening;
++		}
+ 		mem_free(name);
+ 		setcstate(c, get_error_from_errno(errno)); abort_connection(c); return;
+ 	}
