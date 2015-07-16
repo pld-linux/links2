@@ -1,10 +1,10 @@
 #
 # Conditional build:
-%bcond_without	graphics	# build without graphics support
-%bcond_without	fb		# build without Linux Framebuffer graphics driver
-%bcond_without	sdl		# build without SDL graphics driver
-%bcond_with	svga		# build without svgalib graphics driver
-%bcond_without	x		# build without X Window System graphics driver
+%bcond_without	graphics	# graphics support
+%bcond_without	fb		# Linux Framebuffer graphics driver
+%bcond_with	sdl		# SDL graphics driver [disabled in sources]
+%bcond_with	svga		# svgalib graphics driver
+%bcond_without	x		# X Window System graphics driver
 #
 Summary:	Lynx-like WWW browser
 Summary(es.UTF-8):	El links es un browser para modo texto, similar a lynx
@@ -39,6 +39,7 @@ BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	gpm-devel
+BuildRequires:	libevent-devel
 BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
@@ -46,8 +47,10 @@ BuildRequires:	zlib-devel
 %if %{with graphics}
 %{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
 %{?with_sdl:BuildRequires:	SDL-devel >= 1.2.0}
+BuildRequires:	libgomp-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	librsvg-devel >= 2.0.0
 BuildRequires:	libtiff-devel
 %{?with_svga:BuildRequires:	svgalib-devel}
 %{?with_x:BuildRequires:	xorg-lib-libX11-devel}
@@ -114,7 +117,7 @@ Links - це текстовий WWW броузер, на перший погля
 %patch5 -p1
 %patch6 -p1
 %patch9 -p1
-#%%patch10 -p1
+%patch10 -p1
 %patch17 -p1
 %patch18 -p1
 
