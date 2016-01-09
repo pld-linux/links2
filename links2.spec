@@ -13,13 +13,13 @@ Summary(pt_BR.UTF-8):	O links é um browser para modo texto, similar ao lynx
 Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
-Version:	2.11
+Version:	2.12
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
-# Source0-md5:	d122879f2870dfec2fec1a07517c1458
+# Source0-md5:	5d763ab72dc57bbc310feb95679c9d14
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
@@ -30,7 +30,6 @@ Patch3:		%{name}-convert-old-bookmarks.patch
 Patch4:		%{name}-cookies-save.patch
 Patch5:		%{name}-config-dirs.patch
 Patch6:		%{name}-gzip_fallback.patch
-Patch9:		%{name}-segv.patch
 Patch10:	%{name}-pl-update.patch
 Patch17:	ac_config_headers.patch
 Patch18:	ac_prog_cxx.patch
@@ -43,10 +42,12 @@ BuildRequires:	libevent-devel
 BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
+BuildRequires:	xz-devel
 BuildRequires:	zlib-devel
 %if %{with graphics}
 %{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
 %{?with_sdl:BuildRequires:	SDL-devel >= 1.2.0}
+BuildRequires:	cairo-devel
 BuildRequires:	libgomp-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -116,8 +117,7 @@ Links - це текстовий WWW броузер, на перший погля
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-#%%patch9 -p1
-#%%patch10 -p1
+%patch10 -p1
 %patch17 -p1
 %patch18 -p1
 
@@ -165,8 +165,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README SITES
-%attr(755,root,root) %{_bindir}/*
-%{_desktopdir}/*.desktop
-%{_pixmapsdir}/*
-%{_mandir}/man*/*
-%lang(pl) %{_mandir}/pl/man*/*
+%attr(755,root,root) %{_bindir}/glinks
+%attr(755,root,root) %{_bindir}/links2
+%{_desktopdir}/glinks.desktop
+%{_desktopdir}/links2.desktop
+%{_pixmapsdir}/links2.png
+%{_mandir}/man1/glinks.1*
+%{_mandir}/man1/links2.1*
+%lang(pl) %{_mandir}/pl/man1/glinks.1*
+%lang(pl) %{_mandir}/pl/man1/links2.1*
