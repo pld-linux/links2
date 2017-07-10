@@ -1,6 +1,32 @@
---- links-2.13/intl/polish.lng.orig	2016-01-25 16:08:49.000000000 +0100
-+++ links-2.13/intl/polish.lng	2016-08-04 21:48:08.678682525 +0200
-@@ -627,7 +627,7 @@
+--- links-2.14/intl/polish.lng.orig	2016-11-02 18:54:54.000000000 +0100
++++ links-2.14/intl/polish.lng	2017-07-10 17:38:34.832768741 +0200
+@@ -14,7 +14,7 @@
+ T_UNABLE_TO_USE_LOCAL_IP_ADDRESS, "Nie mo¿na u¿yæ lokalnego adresu IP",
+ T_CONFIG_ERROR, "B³±d konfiguracji",
+ T_UNABLE_TO_WRITE_TO_CONFIG_FILE, "Nie mo¿na zapisaæ do pliku konfiguracyjnego",
+-T_HOME_DIRECTORY_INACCESSIBLE, NULL,
++T_HOME_DIRECTORY_INACCESSIBLE, "Katalog domowy niedostêpny",
+ T_BOOKMARK_ERROR, "B³±d zak³adki",
+ T_UNABLE_TO_WRITE_TO_BOOKMARK_FILE, "Nie mo¿na zapisaæ pliku zak³adek",
+ T_ABOUT, "O programie",
+@@ -44,13 +44,13 @@
+ T_GRAPHICS_MODE, "Tryb graficzny",
+ T_IMAGE_LIBRARIES, "Biblioteki obrazów",
+ T_OPENMP, "OpenMP",
+-T_NOT_USED_IN_TEXT_MODE, NULL,
++T_NOT_USED_IN_TEXT_MODE, "Nie u¿ywane w trybie tekstowym",
+ T_DISABLED, "Wy³±czone",
+ T_THREAD, "w±tek",
+ T_THREADS, "w±tki",
+ T_THREADS5, "w±tków",
+-T_CONFIGURATION_DIRECTORY, NULL,
+-T_NONE, NULL,
++T_CONFIGURATION_DIRECTORY, "Katalog konfiguracyjny",
++T_NONE, "Brak",
+ T_KEYS, "Klawiszologia",
+ T_KEYS_DESC, "ESC       poka¿ menu\n^C, q     wyj¶cie\np, l      przewiñ góra,dó³\n[, ]      przewiñ lewo,prawo\ngóra, dó³ zaznacz link\n->        wybierz link\n<-        powrót\ng         przejd¼ do URL-a\nG         przejd¼ do URL-a bazuj±cego na aktualnym\n/         szukaj\nn         znajd¼ nastêpny\nd         pobierz\n*         prze³±cz wy¶wietlanie obrazków\n^W        dope³nij URL lub szukany ³añcuch\n^B, ^X, ^V skopiuj, wytnij, wklej do/ze schowka\nAlt-1 .. Alt-9 prze³±cz ekran wirtualny (svgalib lub framebuffer)",
+ T_KEYS_BRAILLE_DESC, "a, t      kursor do linii stanu lub tytu³u\n{, }      kursor do pocz±tku/koñca linii\n^T, ^Y    nastêpny lub poprzedni odno¶nik",
+@@ -631,7 +631,7 @@
  T_HK_MAIL_AND_TELNEL, "C",
  T_HK_ASSOCIATIONS, "S",
  T_HK_FILE_EXTENSIONS, "R",
