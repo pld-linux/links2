@@ -1,15 +1,15 @@
---- links-2.12/cookies.c.orig	2016-01-09 16:48:22.619433626 +0100
-+++ links-2.12/cookies.c	2016-01-09 16:52:06.066090917 +0100
-@@ -250,15 +250,99 @@
+--- links-2.22/cookies.c.old	2019-04-07 20:17:57.000000000 +0200
++++ links-2.22/cookies.c	2021-03-20 18:58:47.864668687 +0100
+@@ -202,8 +202,28 @@
+ 
  void free_cookies(void)
  {
- 	struct cookie *c;
 +	unsigned char *cookfile;
 +	FILE *fp;
-+
- 	free_list(c_domains);
++	struct cookie *c; 
++	struct list_head *lc;
+ 	free_list(struct c_domain, c_domains);
 -	/* !!! FIXME: save cookies */
--	foreach (c, all_cookies) free_cookie(c);
 +
 +	cookfile = stracpy(links_home);
 +	if (! cookfile) return;
@@ -19,23 +19,23 @@
 +	mem_free(cookfile);
 +	if (fp == NULL) return;
 +
-+	foreach (c, all_cookies) {
++	foreach (struct cookie, c, lc, all_cookies) {
 +		if (c->expires && ! cookie_expired(c))
 +			fprintf(fp, "%s %s %s %s %s %d %d\n", c->name, c->value,
-+			    c->server?c->server:(unsigned char *)"", c->path?c->path:(unsigned char *)"",
-+			    c->domain?c->domain:(unsigned char *)"", (int)c->expires, c->secure);
-+
-+		free_cookie(c);
++			c->server?c->server:(unsigned char *)"", c->path?c->path:(unsigned char *)"",
++			c->domain?c->domain:(unsigned char *)"", (int)c->expires, c->secure);
 +	}
-+
 +	fclose(fp);
 +
- 	free_list(all_cookies);
- }
+ 	while (!list_empty(all_cookies)) {
+ 		struct cookie *c = list_struct(all_cookies.next, struct cookie);
+ 		del_from_list(c);
+@@ -213,6 +233,68 @@
  
  void init_cookies(void)
  {
 -	/* !!! FIXME: read cookies */
+-}
 +	unsigned char in_buffer[MAX_STR_LEN];
 +	unsigned char *cookfile, *p, *q;
 +	FILE *fp;
@@ -56,7 +56,7 @@
 +
 +		if (!(cookie = mem_alloc(sizeof(struct cookie)))) return;
 +		memset(cookie, 0, sizeof(struct cookie));
-+
+ 
 +		q = in_buffer; p = strchr(in_buffer, ' ');
 +		if (p == NULL) goto inv;
 +		*p++ = '\0';
@@ -100,6 +100,4 @@
 +		free(cookie);
 +	}
 +	fclose(fp);
- }
- 
- void cleanup_cookies(void)
++}

@@ -1,8 +1,8 @@
---- links-2.7/configure.in.old	2013-04-06 20:22:33.003959516 +0200
-+++ links-2.7/configure.in	2013-04-06 20:22:48.727535993 +0200
-@@ -14,7 +14,7 @@ AUTOMAKE="./missing automake"
- AUTOHEADER="./missing autoheader"
- image_formats="GIF PNG XBM"
+--- links-2.22/configure.in.old	2021-03-20 19:16:29.597937288 +0100
++++ links-2.22/configure.in	2021-03-20 19:16:50.644602655 +0100
+@@ -18,7 +18,7 @@
+ export LDFLAGS
+ export LIBS
  
 -AM_CONFIG_HEADER(config.h)
 +AC_CONFIG_HEADERS(config.h)

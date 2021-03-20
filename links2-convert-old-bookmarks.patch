@@ -1,8 +1,8 @@
---- links-2.8/bookmark.c	2013-09-01 19:13:47.000000000 +0200
-+++ links-2.8/bookmark.c.new	2013-10-07 19:23:03.763106002 +0200
-@@ -719,6 +719,18 @@
- 		safe_strncpy(e, cast_uchar "bookmarks.html", MAX_STR_LEN - (e - bookmarks_file));
- #endif
+--- links-2.22/bookmark.c.old	2021-03-20 18:44:34.524720442 +0100
++++ links-2.22/bookmark.c	2021-03-20 18:45:06.331385178 +0100
+@@ -785,6 +785,18 @@
+ 			msg_box(ses->term, getml(f, NULL), TEXT_(T_BOOKMARK_ERROR), AL_CENTER, TEXT_(T_UNABLE_TO_WRITE_TO_BOOKMARK_FILE), cast_uchar " ", f, cast_uchar ": ", get_err_msg(err, ses->term), MSG_BOX_END, NULL, 1, TEXT_(T_CANCEL), msg_box_null, B_ENTER | B_ESC);
+ 		}
  	}
 +	/* try to create bookmarks.html based on old bookmarks (from links <= 0.97) */
 +	if (access(bookmarks_file, R_OK) != 0) {
@@ -17,5 +17,5 @@
 +		}
 +	}
  
- 	bookmark_ld.codepage=utf8_table;
- 	load_bookmarks(NULL);
+ 	EINTRLOOP(rs, stat(cast_const_char bookmarks_file, &bookmarks_st));
+ 	if (rs)
