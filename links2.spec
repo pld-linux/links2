@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	graphics	# graphics support
 %bcond_without	fb		# Linux Framebuffer graphics driver
+%bcond_with	directfb	# DirrectFB graphics driver
 %bcond_with	sdl		# SDL graphics driver [disabled in sources]
 %bcond_with	svga		# svgalib graphics driver
 %bcond_without	x		# X Window System graphics driver
@@ -25,6 +26,7 @@ Source2:	%{name}.1.pl
 Source3:	%{name}.png
 Source4:	glinks.desktop
 Patch0:		%{name}-links-g_if_glinks.patch
+Patch1:		%{name}-pkgconfig.patch
 Patch2:		%{name}-img.patch
 Patch3:		%{name}-convert-old-bookmarks.patch
 Patch5:		%{name}-config-dirs.patch
@@ -36,22 +38,30 @@ URL:		http://links.twibright.com/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	fontconfig-devel
+BuildRequires:	freetype-devel >= 2
 BuildRequires:	gpm-devel
+BuildRequires:	libbrotli-devel
+BuildRequires:	libbsd-devel
 BuildRequires:	libevent-devel
+BuildRequires:	libgomp-devel
+BuildRequires:	lzlib-devel
 BuildRequires:	ncurses-devel >= 5.1
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
 BuildRequires:	xz-devel
 BuildRequires:	zlib-devel
+BuildRequires:	zstd-devel
 %if %{with graphics}
-%{?with_fb:BuildRequires:	DirectFB-devel >= 0.9.17}
+%{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.17}
 %{?with_sdl:BuildRequires:	SDL-devel >= 1.2.0}
 BuildRequires:	cairo-devel
 BuildRequires:	libgomp-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
+BuildRequires:	libpng-devel >= 1.0.0
 BuildRequires:	librsvg-devel >= 2.0.0
 BuildRequires:	libtiff-devel
+BuildRequires:	libwebp-devel
 %{?with_svga:BuildRequires:	svgalib-devel}
 %{?with_x:BuildRequires:	xorg-lib-libX11-devel}
 %endif
@@ -111,6 +121,7 @@ Links - це текстовий WWW броузер, на перший погля
 %prep
 %setup -q -n links-%{version}
 %{?with_graphics:%patch0 -p1}
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch5 -p1
@@ -130,6 +141,7 @@ cd intl
 %configure \
 	--program-suffix=2 \
 	%{?with_graphics:--enable-graphics} \
+	%{!?with_directfb:--without-directfb} \
 	%{!?with_fb:--without-fb} \
 	%{!?with_sdl:--without-sdl} \
 	%{!?with_svga:--without-svgalib} \
