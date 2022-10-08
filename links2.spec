@@ -126,7 +126,7 @@ Links - це текстовий WWW броузер, на перший погля
 %patch3 -p1
 %patch5 -p1
 %patch6 -p1
-#%%patch10 -p1
+%patch10 -p1
 %patch17 -p1
 %patch18 -p1
 
