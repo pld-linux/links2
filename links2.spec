@@ -14,13 +14,13 @@ Summary(pt_BR.UTF-8):	O links é um browser para modo texto, similar ao lynx
 Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
-Version:	2.28
+Version:	2.29
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://links.twibright.com/download/links-%{version}.tar.bz2
-# Source0-md5:	915c45777f0c9d8e6ec85438cbd7d3df
+# Source0-md5:	f60b87ffee090c5d6820951eba710572
 Source1:	%{name}.desktop
 Source2:	%{name}.1.pl
 Source3:	%{name}.png
