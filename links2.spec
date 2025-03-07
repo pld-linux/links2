@@ -15,7 +15,7 @@ Summary(ru.UTF-8):	Текстовый WWW броузер типа Lynx
 Summary(uk.UTF-8):	Текстовий WWW броузер типу Lynx
 Name:		links2
 Version:	2.30
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
@@ -41,6 +41,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2
 BuildRequires:	gpm-devel
+BuildRequires:	libavif-devel
 BuildRequires:	libbrotli-devel
 BuildRequires:	libbsd-devel
 BuildRequires:	libevent-devel
